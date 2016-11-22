@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/22 14:09:54 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/22 20:21:51 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -20,29 +20,32 @@ void	transfo(char *str, va_list ap)
 {
 	int		i;
 	int		j;
+	int		k;
 	char	*res;
-	void 	(**format);
-	char	*pos = "sSpdDioOuUxXcC%";
+	char	*pos[2];
 
-	format = ft_type();
+	pos[0] = "spdiouxc%";
+	pos[1] = "SDOUXC";
 	i = ft_strlen(str);
 	j = 0;
-	while (str[j] != pos[j])
+	k = 0;
+	while (str[j] != pos[0][j] && str[j] != pos[1][j])
 		++j;
-	res = format[j](ap, 0, 0);
-	
+	if (i > 1 && str[j - 1] == 'l')
+	{
+		k = 1;
+		if (i > 2 && str[j - 2] == 'l')
+			k = 2;
+	}
+	res = ft_type()[j](ap, (pos[0][j] == str[j] ? k : k + 1), 0);
 }
 
-char 	*ft_findpara(char **str)
+char 	*ft_findpara(char **str, int j, int i)
 {
-	int		i;
-	int		j;
 	char	*pos = "sSpdDioOuUxXcC%";
 	char	*res;
 
-	j = 0;
-	i = 14;
-	while (str[j] && i == 14 && (*str)[j] != '%')
+	while (str[j] && i == 15)
 	{
 		i = 0;
 		while (pos[i])
@@ -54,14 +57,14 @@ char 	*ft_findpara(char **str)
 		++j;
 	}
 	res = malloc(j + 1);
-	while ((*str)[0] != pos[i])
+	i = 0;
+	while (i < j)
 	{
 		res[i] = (*str)[0];
 		++i;
 		++(*str);
 	}
 	res[i] = '\0';
-	*str = *str + j;
 	return (res);
 }
 
@@ -86,14 +89,7 @@ int		ft_printf(const char *str, ...)
 
 	va_start(ap, str);
 	pute = troncage((char *)str);
-	amod = ft_findpara(&pute);
+	amod = ft_findpara(&pute, 1, 15);
 	transfo(amod, ap);
 	return (ft_addprint(0));
 }
-
-// int main(void)
-// {
-// 	int d = 0;
-// 	d = printf("%ld\n", -25);
-// 	printf("%d\n",d );
-// }

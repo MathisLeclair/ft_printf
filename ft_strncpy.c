@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 10:30:53 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/23 17:37:21 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/03 17:00:31 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/05 19:16:47 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	int d;
+	size_t i;
+	size_t dwa;
 
-	d = printf("%hd\n", (short)45);
-	printf("%d\n",d);
+	i = 0;
+	dwa = ft_strlen(src);
+	while (src[i] && i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (dwa < len)
+		ft_bzero(&dst[i], len - i);
+	return (dst);
 }

@@ -1,17 +1,17 @@
-s - string
-S - string + tag l
+#s - string
+#S - string + tag l
 p - prend un void -> hexa
-d - int
-D - int + tag l
-i = d
-o - unsigned octale
-O - unsigned octale + tag l
+#d - int
+#D - int + tag l
+#i = d
+#o - unsigned octale
+#O - unsigned octale + tag l
 u - unsgiened decimal
 U -  unsigned decimal + tag l
-x -  hexa en lowercase
-X - hexa en uppercase
-c - char
-C - char + tag l
+#x -  hexa en lowercase
+#X - hexa en uppercase
+#c - char
+#C - char + tag l
 %% - "%"
 # - forme alternative
 0 - affiche des 0 a la place des blancs

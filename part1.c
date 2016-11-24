@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/23 22:01:20 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/24 11:36:37 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,46 +45,56 @@ int		ft_c(va_list ap, int i, char c, char **str)
 	return (1);
 }
 
-int		ft_x(va_list ap, int i, char c, char **str)
+int		ft_o(va_list ap, int i, char c, char **str)
 {
 	int d;
 
-	d = va_arg(ap, int);
-	*str =  ft_itoa_base(d, 8);
-	i = 0;
-	if (c == 'x')
-		while (*str[i])
-		{
-			if (*str[i] >= 'A' && *str[i] <= 'F')
-				*str[i] -= 32;
-			++i;
-		}
+	if (i == 1 || c == 'O')
+		d = va_arg(ap, long int);
+	else
+		d = va_arg(ap, int);
+	*str = ft_itoa_base(d, 8);
 	return (ft_strlen(*str));
 }
 
-int		ft_d(va_list ap, int i, char c, char **str)
+int		ft_u(va_list ap, int i, char c, char **str)
 {
 	int d;
 
 	if (i == 1 || c == 'D')
-		d = va_arg(ap, long int);
+		d = va_arg(ap, unsigned long int);
 	if (i == 2)
-		d = va_arg(ap, long long int);
+		d = va_arg(ap, unsigned long long int);
 	else
-		d = va_arg(ap, int);
+		d = va_arg(ap, unsigned int);
 	*str = ft_itoa_base(d, 10);
 	return (ft_strlen(*str));
 }
 
-char	*ft_israndom(va_list ap, int i, char c)
+int		ft_e(va_list ap, int i, char c, char **str)
 {
-	char *str;
+	int d;
+	int bool;
+	char tmp[14];
 
-	i = 42*42/42-42+42;
-	str = malloc(2);
-	str[0] = c;
-	str[1] = '\0';
-	if (ap)
-		;
-	return (str);
+	bool = '0';
+	d = va_arg(ap, int);
+	if (d < 0)
+		c = '1';
+	i = 0;
+	while (tmp[i])
+		tmp[i] = 0;
+	if (bool == 1)
+		tmp[bool - 1] = '-';
+	tmp[bool] = ft_itoa_base(d, 10)[1];
+	tmp[bool + 1] = '.';
+	i = 1;
+	while (i < 7)
+		tmp[bool + 1 + i] = ft_itoa_base(d, 10)[i + 1];
+	tmp[bool + 8] = 'e';
+	tmp[bool + 9] = '+';
+	tmp[bool + 10] = ft_itoa_base(ft_strlen(ft_itoa_base(d, 10)),10)[0];
+	tmp[bool + 11] = ft_itoa_base(ft_strlen(ft_itoa_base(d, 10)),10)[1];
+	ft_strncpy(*str, tmp, 13);
+	return (12);
 }

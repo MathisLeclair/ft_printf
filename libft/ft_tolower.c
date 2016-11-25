@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/04 21:35:14 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/05 11:26:52 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-
-int		ft_print(char *str, int k)
+int		ft_tolower(int c)
 {
-	static int i;
-
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	if (c >= 'A' && c <= 'Z')
+		c = c + 32;
+	return (c);
 }

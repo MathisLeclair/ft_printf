@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/04 15:05:55 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/05 17:39:31 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+void	ft_putstr_fd(char const *s, int fd)
 {
-	static int i;
-
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	if (s == NULL)
+		return ;
+	write(fd, s, ft_strlen(s));
 }

@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/04 19:08:02 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/06 10:31:15 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	static int i;
+	size_t i;
+	size_t size_s1;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	i = 0;
+	while (dst[i] && i < n)
+		i++;
+	size_s1 = i;
+	while (src[i - size_s1] && i < n - 1)
+	{
+		dst[i] = src[i - size_s1];
+		i++;
+	}
+	if (size_s1 < n)
+		dst[i] = 0;
+	return (size_s1 + ft_strlen(src));
 }

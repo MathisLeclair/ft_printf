@@ -6,11 +6,11 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:36:08 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 11:38:21 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/24 16:16:48 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <printf.h>
+#include "printf.h"
 
 int		ft_x(va_list ap, int i, char c, char **str)
 {
@@ -36,7 +36,7 @@ int		ft_i(va_list ap, int i, char c, char **str)
 
 int		ft_d(va_list ap, int i, char c, char **str)
 {
-	int d;
+	long long int d;
 
 	if (i == 1 || c == 'D')
 		d = va_arg(ap, long int);
@@ -44,7 +44,7 @@ int		ft_d(va_list ap, int i, char c, char **str)
 		d = va_arg(ap, long long int);
 	else
 		d = va_arg(ap, int);
-	*str = ft_itoa_base(d, 10);
+	ft_strcat(*str, ft_itoa_base(d, 10));
 	return (ft_strlen(*str));
 }
 

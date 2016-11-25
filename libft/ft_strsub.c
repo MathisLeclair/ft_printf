@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/05 10:41:08 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/08 09:41:15 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	static int i;
+	char	*str;
+	size_t	i;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * len + 1);
+	if (str == NULL)
+		return (NULL);
+	ft_bzero(str, ft_strlen(s) + 1);
+	if (str == NULL)
+		return (NULL);
+	while (i < len && s[start])
+	{
+		str[i] = s[start];
+		i++;
+		start++;
+	}
+	return (str);
 }

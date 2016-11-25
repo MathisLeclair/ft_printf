@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/02 17:07:53 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/03 15:16:03 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-
-int		ft_print(char *str, int k)
+int		ft_sqrt(int nb)
 {
-	static int i;
+	int sqrt;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	sqrt = 0;
+	if (nb > 2147395601)
+		return (0);
+	while (sqrt * sqrt < nb)
+		sqrt++;
+	if (sqrt * sqrt == nb)
+		return (sqrt);
+	else
+		return (0);
 }

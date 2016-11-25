@@ -6,17 +6,16 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 11:39:36 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/24 17:04:48 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	transfo(char *str, va_list ap, int j)
+void	transfo(char *str, va_list ap, int j, char **MACHIN)
 {
 	int		i;
 	int		k;
-	char	*res;
 	char	*pos[2];
 
 	pos[0] = "sdouxcefgip";
@@ -37,8 +36,8 @@ void	transfo(char *str, va_list ap, int j)
 		if (i > 3 && str[i - 3] == 'h')
 			k = -2;
 	}
-	res = ft_type()[j](ap, k, str[j]);
-	ft_apliopt(res, str);
+	ft_type()[j](ap, k, str[j], MACHIN);
+	ft_print(*MACHIN, ft_strlen(*MACHIN));
 }
 
 char 	*ft_findpara(char **str)
@@ -47,14 +46,17 @@ char 	*ft_findpara(char **str)
 	int		j;
 	int		i;
 
-	j = 1;
+	(*str) += 1;
+	j = 0;
 	while ((*str)[j] && (ft_isokay((*str)[j])))
 		++j;
+	if ((*str)[j])
+		j++;
 	res = malloc(j + 1);
 	i = 0;
 	while (i < j)
 	{
-		res[i] = (*str)[0];
+		res[i] = *(*str);
 		++i;
 		++(*str);
 	}
@@ -65,10 +67,8 @@ char 	*ft_findpara(char **str)
 char	*troncage(char *str)
 {
 	int i;
-	int k;
 
 	i = 0;
-	k = 0;
 	while (str[i] != '%' && str[i])
 		i++;
 	ft_print(str, i);
@@ -78,16 +78,22 @@ char	*troncage(char *str)
 int		ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	char	*pute;
+	char	*str4;
 	char	*amod;
+	char	*MACHIN;
 
-	pute = ft_strdup(str);
+	MACHIN = malloc(sizeof(char)* 10000000);
+	MACHIN[0] = 0;
+	str4 = ft_strdup(str);
 	va_start(ap, str);
-	while (pute[0])
+	while (str4[0])
 	{
-	pute = troncage(pute);
-	amod = ft_findpara(&pute);
-	transfo(amod, ap, 0);
+		str4 = troncage(str4);
+		if (str4[0] == 0)
+			break ;
+		amod = ft_findpara(&str4);
+		if (*amod != 0)
+			transfo(amod, ap, 0, &MACHIN);
 	}
 	return (ft_print(0, 0));
 }

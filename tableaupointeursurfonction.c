@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:32:47 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 11:38:43 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:26:14 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ t_fun	*ft_type(void)
 		fcts[4] = ft_x;
 		fcts[5] = ft_c;
 		fcts[6] = ft_i;
-		fcts[7] = ft_p;
+		// fcts[7] = ft_p;
 		fcts[8] = ft_e;
-		fcts[9] = ft_f;
-		fcts[10] = ft_g;
+		// fcts[9] = ft_f;
+		// fcts[10] = ft_g;
 		fcts[11] = ft_israndom;
 	}
 	return (fcts);

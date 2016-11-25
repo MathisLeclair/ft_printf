@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/04 17:46:30 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/05 18:21:31 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	static int i;
+	unsigned int	i;
+	unsigned char	*truc;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	truc = (unsigned char *)s;
+	i = 0;
+	while (n--)
+	{
+		if (truc[i] == (unsigned char)c)
+			return (&truc[i]);
+		i++;
+	}
+	return (NULL);
 }

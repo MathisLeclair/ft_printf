@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/04 15:10:00 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/05 17:55:52 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+void	ft_putnbr_fd(int i, int fd)
 {
-	static int i;
-
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	if (i >= 0)
+		i *= -1;
+	else
+		ft_putchar_fd('-', fd);
+	if (i < -9)
+		ft_putnbr_fd(-(i / 10), fd);
+	ft_putchar_fd(-(i % 10) + '0', fd);
 }

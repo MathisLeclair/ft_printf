@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/02 16:18:30 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/03 15:11:25 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-
-int		ft_print(char *str, int k)
+int		ft_iterative_factorial(int nb)
 {
-	static int i;
+	int bite;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	if (nb > 0 && nb <= 12)
+	{
+		bite = nb;
+		while (nb > 1)
+		{
+			bite = bite * (nb - 1);
+			nb = nb - 1;
+		}
+	}
+	else if (nb == 0)
+		return (1);
+	else
+		return (0);
+	return (bite);
 }

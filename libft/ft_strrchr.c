@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/04 22:04:42 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/06 10:39:12 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+char	*ft_strrchr(const char *s, int c)
 {
-	static int i;
+	int i;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	i = ft_strlen(s);
+	if (i == 0)
+		return (NULL);
+	while (s[i] != (char)c && s[i - 1])
+		i--;
+	if (s[i] == c)
+		return (&((char *)s)[i]);
+	else
+		return (0);
 }

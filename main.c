@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/24 12:26:39 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/25 12:07:02 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		ft_print(char *str, int k)
+int main(void)
 {
-	static int i;
+	int ret;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	ret = 0;
+	ret = ft_printf("test%o\n", 75);
+	return (ret);
 }
+
+// int main(void)
+// {
+// 	printf("%e\n",(double)0);
+// }

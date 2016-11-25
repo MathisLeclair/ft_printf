@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 10:58:50 by exam              #+#    #+#             */
-/*   Updated: 2016/11/08 11:35:00 by exam             ###   ########.fr       */
+/*   Updated: 2016/11/24 16:16:24 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "printf.h"
 
 int		ft_power(int value, int power)
 {
@@ -44,7 +44,7 @@ char	*sol(int i, char neg, int save, int base)
 	return (slo);
 }
 
-char	*ft_itoa_base(int value, int base)
+char	*ft_itoa_base(long long int value, int base)
 {
 	int		i;
 	int		save;

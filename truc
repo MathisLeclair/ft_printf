@@ -6,8 +6,8 @@ p - prend un void -> hexa
 #i = d
 #o - unsigned octale
 #O - unsigned octale + tag l
-u - unsgiened decimal
-U -  unsigned decimal + tag l
+#u - unsgiened decimal
+#U -  unsigned decimal + tag l
 #x -  hexa en lowercase
 #X - hexa en uppercase
 #c - char
@@ -17,15 +17,15 @@ U -  unsigned decimal + tag l
 0 - affiche des 0 a la place des blancs
 - - met les trucs a gauche
 + - si nb + met un "+" devant sinon met " "
-hh - cast en unsigned char (ou en signed des foi)
-h - cast en short
-l - cast en long (ou en double des foi)
-ll - cast en long long
+#hh - cast en unsigned char (ou en signed des foi)
+#h - cast en short
+#l - cast en long (ou en double des foi)
+#ll - cast en long long
 z - cast en size_t
 
 
 BONUS
 
-eE - arrondie +- qqch
+#eE - arrondie +- qqch
 fF - 
 gG - 

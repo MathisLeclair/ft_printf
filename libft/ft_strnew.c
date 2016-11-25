@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/04 22:06:54 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/05 18:04:25 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+char	*ft_strnew(size_t size)
 {
-	static int i;
+	char *str;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	str = (char *)malloc(size + 1);
+	if (str == NULL)
+		return (NULL);
+	while (size)
+	{
+		str[size] = 0;
+		size--;
+	}
+	str[0] = 0;
+	return (str);
 }

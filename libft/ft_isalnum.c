@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/04 12:03:22 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/05 11:35:34 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+int		ft_isalnum(int c)
 {
-	static int i;
-
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')
+	|| (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }

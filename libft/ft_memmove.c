@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/04 17:43:57 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/07 16:00:59 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	static int i;
+	void		*ret;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	ret = dst;
+	if (dst < src)
+		while (0 < len--)
+			*(char *)dst++ = *(char *)src++;
+	else
+		while (len-- > 0)
+			((char *)dst)[len] = ((char *)src)[len];
+	return (ret);
 }

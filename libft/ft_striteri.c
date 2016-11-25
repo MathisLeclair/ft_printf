@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/05 10:16:27 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/07 14:21:14 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	static int i;
+	int i;
+	int y;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	if (!s || !f)
+		return ;
+	i = 0;
+	y = ft_strlen(s);
+	if (s != NULL)
+	{
+		while (i < y)
+		{
+			f(i, s);
+			s++;
+			i++;
+		}
+	}
 }

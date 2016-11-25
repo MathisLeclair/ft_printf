@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   addprint.c                                         :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Created: 2016/11/05 10:22:13 by mleclair          #+#    #+#             */
+/*   Updated: 2016/11/06 19:02:22 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-int		ft_print(char *str, int k)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	static int i;
+	int		i;
+	char	*str;
 
-	i = i + k;
-	write(1, str, k);
-	return (i);
+	i = 0;
+	if (s != NULL && f != NULL)
+	{
+		str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+		if (str == NULL)
+			return (NULL);
+		while (s[i])
+		{
+			str[i] = f(s[i]);
+			i++;
+		}
+		str[i] = '\0';
+		return (str);
+	}
+	return (NULL);
 }

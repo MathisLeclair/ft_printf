@@ -6,20 +6,20 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 17:04:48 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/26 16:11:13 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	transfo(char *str, va_list ap, int j, char **MACHIN)
+void	transfo(char *str, va_list ap, int j, char **machin)
 {
 	int		i;
 	int		k;
 	char	*pos[2];
 
-	pos[0] = "sdouxcefgip";
-	pos[1] = "SDOUXCEFG\0\0";
+	pos[0] = "sdouxcip";
+	pos[1] = "SDOUXC\0\0";
 	i = ft_strlen(str);
 	k = 0;
 	while (str[i - 1] != pos[0][j] && str[i - 1] != pos[1][j] && pos[0][j])
@@ -36,8 +36,8 @@ void	transfo(char *str, va_list ap, int j, char **MACHIN)
 		if (i > 3 && str[i - 3] == 'h')
 			k = -2;
 	}
-	ft_type()[j](ap, k, str[j], MACHIN);
-	ft_print(*MACHIN, ft_strlen(*MACHIN));
+	i = ft_type()[j](ap, k, str[i - 1], machin);
+	ft_print(*machin, i);
 }
 
 char 	*ft_findpara(char **str)
@@ -80,10 +80,9 @@ int		ft_printf(const char *str, ...)
 	va_list	ap;
 	char	*str4;
 	char	*amod;
-	char	*MACHIN;
+	char	*machin;
 
-	MACHIN = malloc(sizeof(char)* 10000000);
-	MACHIN[0] = 0;
+	machin = NULL;
 	str4 = ft_strdup(str);
 	va_start(ap, str);
 	while (str4[0])
@@ -93,7 +92,7 @@ int		ft_printf(const char *str, ...)
 			break ;
 		amod = ft_findpara(&str4);
 		if (*amod != 0)
-			transfo(amod, ap, 0, &MACHIN);
+			transfo(amod, ap, 0, &machin);
 	}
 	return (ft_print(0, 0));
 }

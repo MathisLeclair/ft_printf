@@ -6,13 +6,13 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 10:58:50 by exam              #+#    #+#             */
-/*   Updated: 2016/11/24 16:16:24 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/26 15:03:44 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		ft_power(int value, int power)
+int		ft_power(long long int value, int power)
 {
 	if (power == 0)
 		return (1);
@@ -21,7 +21,7 @@ int		ft_power(int value, int power)
 	return (value);
 }
 
-char	*sol(int i, char neg, int save, int base)
+char	*sol(int i, char neg, long long int save, int base)
 {
 	char	*str;
 	char	*slo;
@@ -46,9 +46,9 @@ char	*sol(int i, char neg, int save, int base)
 
 char	*ft_itoa_base(long long int value, int base)
 {
-	int		i;
-	int		save;
-	char	neg;
+	int				i;
+	long long int	save;
+	char			neg;
 
 	i = 0;
 	neg = 0;

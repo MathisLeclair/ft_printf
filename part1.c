@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/25 11:50:25 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/26 16:05:17 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,70 @@
 
 int		ft_s(va_list ap, int i, char c, char **str)
 {
-	wchar_t *T;
+	wchar_t	*t;
+	char	*tmp;
 
 	if (c == 'S' || i == 1)
 	{
 		i = 0;
-		T = va_arg(ap, wchar_t *);
-		while (T[i])
+		t = va_arg(ap, wchar_t *);
+		while (t[i])
 			++i;
-		*str = (char *)T;
-		return (4 * i);
+		*str = malloc(sizeof(wchar_t) * i);
+		*str = (char *)t;
+		return (sizeof(wchar_t) * i);
 	}
-	*str = va_arg(ap, char *);
-	return (ft_strlen(*str));
+	tmp = va_arg(ap, char *);
+	*str = malloc(ft_strlen(tmp) + 1);
+	i = 0;
+	while (tmp[i])
+	{
+		(*str)[i] = tmp[i];
+		++i;
+	}
+	(*str)[i] = '\0';
+	return (i);
 }
 
 int		ft_c(va_list ap, int i, char c, char **str)
 {
-	wchar_t T;
+	wchar_t t;
 
 	if (c == 'S' || i == 1)
 	{
 		i = 0;
-		T = va_arg(ap, wchar_t);
-		*str = (char *)&T;
+		t = va_arg(ap, wchar_t);
+		*str = malloc(sizeof(wchar_t));
+		*str = (char *)&t;
 		return (4);
 	}
+	*str = malloc(2);
 	*str[0] = va_arg(ap, int);
-	*str[1] = '\0';
+	(*str)[1] = '\0';
 	return (1);
 }
 
 int		ft_o(va_list ap, int i, char c, char **str)
 {
-	int d;
+	long unsigned int	d;
+	char				*tmp;
 
 	if (i == 1 || c == 'O')
-		d = va_arg(ap, long int);
+		d = va_arg(ap, long unsigned int);
 	else
-		d = va_arg(ap, int);
-	*str = ft_itoa_base(d, 8);
+		d = va_arg(ap, unsigned int);
+	tmp = ft_itoa_base(d, 8);
+	*str = malloc(strlen(tmp));
+	**str = 0;
+	ft_strcat(*str, tmp);
+	free(tmp);
 	return (ft_strlen(*str));
 }
 
 int		ft_u(va_list ap, int i, char c, char **str)
 {
-	int d;
+	unsigned long long int	d;
+	char					*tmp;
 
 	if (i == 1 || c == 'D')
 		d = va_arg(ap, unsigned long int);
@@ -67,34 +85,10 @@ int		ft_u(va_list ap, int i, char c, char **str)
 		d = va_arg(ap, unsigned long long int);
 	else
 		d = va_arg(ap, unsigned int);
-	*str = ft_itoa_base(d, 10);
+	tmp = ft_itoa_base(d, 10);
+	*str = malloc(strlen(tmp));
+	**str = 0;
+	ft_strcat(*str, tmp);
+	free(tmp);
 	return (ft_strlen(*str));
-}
-
-int		ft_e(va_list ap, int i, char c, char **str)
-{
-	int d;
-	int bool;
-	char tmp[14];
-
-	bool = '0';
-	d = va_arg(ap, int);
-	if (d < 0)
-		c = '1';
-	i = 0;
-	while (tmp[i])
-		tmp[i] = 0;
-	if (bool == 1)
-		tmp[bool - 1] = '-';
-	tmp[bool] = ft_itoa_base(d, 10)[1];
-	tmp[bool + 1] = '.';
-	i = 1;
-	while (i < 7)
-		tmp[bool + 1 + i] = ft_itoa_base(d, 10)[i + 1];
-	tmp[bool + 8] = 'e';
-	tmp[bool + 9] = '+';
-	tmp[bool + 10] = ft_itoa_base(ft_strlen(ft_itoa_base(d, 10)),10)[0];
-	tmp[bool + 11] = ft_itoa_base(ft_strlen(ft_itoa_base(d, 10)),10)[1];
-	ft_strncpy(*str, tmp, 13);
-	return (12);
 }

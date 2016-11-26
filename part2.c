@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:36:08 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 16:16:48 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/26 16:18:10 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 int		ft_x(va_list ap, int i, char c, char **str)
 {
-	int d;
+	unsigned int d;
 
-	d = va_arg(ap, int);
-	*str =  ft_itoa_base(d, 16);
+	d = va_arg(ap, unsigned int);
+	*str = ft_itoa_base(d, 16);
 	i = 0;
 	if (c == 'x')
-		while (*str[i])
+	{
+		while ((*str)[i])
 		{
-			if (*str[i] >= 'A' && *str[i] <= 'F')
-				*str[i] -= 32;
+			if ((*str)[i] >= 'A' && (*str)[i] <= 'F')
+				(*str)[i] += 32;
 			++i;
 		}
+	}
 	return (ft_strlen(*str));
 }
 
@@ -36,7 +38,8 @@ int		ft_i(va_list ap, int i, char c, char **str)
 
 int		ft_d(va_list ap, int i, char c, char **str)
 {
-	long long int d;
+	long long int	d;
+	char			*tmp;
 
 	if (i == 1 || c == 'D')
 		d = va_arg(ap, long int);
@@ -44,15 +47,25 @@ int		ft_d(va_list ap, int i, char c, char **str)
 		d = va_arg(ap, long long int);
 	else
 		d = va_arg(ap, int);
-	ft_strcat(*str, ft_itoa_base(d, 10));
+	tmp = ft_itoa_base(d, 10);
+	*str = malloc(strlen(tmp));
+	**str = 0;
+	ft_strcat(*str, tmp);
+	free(tmp);
 	return (ft_strlen(*str));
+}
+
+int		ft_p(va_list ap, int i, char c, char **str)
+{
+	return(ft_x(ap, i, c, str));
 }
 
 int		ft_israndom(va_list ap, int i, char c, char **str)
 {
 	i = 42*42/42-42+42;
-	*str[0] = c;
-	*str[1] = '\0';
+	*str = malloc(2);
+	(*str)[0] = c;
+	(*str)[1] = '\0';
 	if (ap)
 		;
 	return (ft_strlen(*str));

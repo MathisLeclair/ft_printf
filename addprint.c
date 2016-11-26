@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 13:45:32 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/24 13:49:05 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/25 15:53:26 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ int		ft_print(char *str, int k)
 
 	i = i + k;
 	write(1, str, k);
+	ft_bzero(str, k);
 	return (i);
 }

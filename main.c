@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 12:26:39 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/25 12:07:02 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/26 18:27:47 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 int main(void)
 {
 	int ret;
+	double i;
 
+	i = 9223372036854775807;
 	ret = 0;
-	ret = ft_printf("test%o\n", 75);
+	printf("vraie = %s = %-15o = %X = %c = %lc\n", "SSSSSSS", 215684, 1368532, 'F', 'f');
+	ret = ft_printf("notre = %.5s = %d = %X = %c = %lc\n", "SSSSSSS", 2000000000, 1368532, 'F', 'f');
 	return (ret);
 }
 

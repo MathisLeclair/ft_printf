@@ -6,11 +6,11 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 10:58:50 by exam              #+#    #+#             */
-/*   Updated: 2016/11/27 11:15:18 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 19:09:50 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
 int		ft_power(long long int value, int power)
 {

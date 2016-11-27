@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 18:24:54 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 19:31:03 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		ft_opts2(char *tab, char **str, int i, char *opt)
 {
-//	printf("tab0 = %d, tab1 = %d, tab2 = %d, tab3 = %d, tab4 = %d\n", tab[0], tab[1], tab[2], tab[3], tab[4]);
 	if (tab[0] == 1 && tab[1] == 1)
 		i = ft_number(i, ft_atoi_base_printf((tab[3] == 1
 			&& tab[4] == 1 ? (opt + 1) : opt), 10, 0), 1, str);
@@ -40,6 +39,7 @@ int		ft_opts(char *opt, char **str, int i)
 	int		k;
 	char	tab[5];
 
+	printf("str = %s\n", *str);
 	ft_bzero(tab, 5);
 	k = ft_strlen(opt);
 	while (k > 0 && --k)

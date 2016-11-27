@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 12:26:39 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 18:28:43 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 19:25:32 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int main(void)
 	ret2 = ft_printf("notre = %#5x\n",987654);
 	printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
 
-	ret1 = printf("vraie = %06x\n", 987654);
-	ret2 = ft_printf("notre = %06x\n",987654);
+	ret1 = printf("vraie = %5%\n");
+	ret2 = ft_printf("notre = %5%\n");
 	printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
 }
 

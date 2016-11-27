@@ -6,7 +6,7 @@
 #    By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 19:21:21 by mleclair          #+#    #+#              #
-#    Updated: 2016/11/24 13:27:41 by mleclair         ###   ########.fr        #
+#    Updated: 2016/11/27 19:10:12 by mleclair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ FILE =	ft_atoi \
 		ft_strsub \
 		ft_strtrim \
 		ft_tolower \
-		ft_toupper
+		ft_toupper \
+		ft_itoa_base
 
 OBJ  := $(addsuffix .o, $(FILE))
 

@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 12:26:39 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 10:53:19 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 18:28:43 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,25 @@ int main(void)
 	printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
 
 	printf("%%option #:\n");
-	ret1 = printf("vraie = %#5x\n", 987654);
-	ret2 = ft_printf("notre = %#o\n",987654);
+	ret1 = printf("vraie = %#10x\n", 987654);
+	ret2 = ft_printf("notre = %#10x\n",987654);
 	printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
 
+	ret1 = printf("vraie = %#06x\n", 987654);
+	ret2 = ft_printf("notre = %#06x\n",987654);
+	printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
+
+	ret1 = printf("vraie = %#010x\n", 987654);
+	ret2 = ft_printf("notre = %#010x\n",987654);
+	printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
+
+	ret1 = printf("vraie = %#5x\n", 987654);
+	ret2 = ft_printf("notre = %#5x\n",987654);
+	printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
+
+	ret1 = printf("vraie = %06x\n", 987654);
+	ret2 = ft_printf("notre = %06x\n",987654);
+	printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
 }
 
 // int main(void)

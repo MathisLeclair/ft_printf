@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 11:13:55 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 15:36:50 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	transfo(char *str, va_list ap, int j, char **machin)
 			k = -2;
 	}
 	i = ft_type()[j](ap, k, str[i - 1], machin);
+	i = ft_opts(str, machin, i);
 	ft_print(*machin, i, 0);
 }
 

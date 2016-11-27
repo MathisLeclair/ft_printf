@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:36:08 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/26 16:18:10 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 11:17:05 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_x(va_list ap, int i, char c, char **str)
 
 int		ft_i(va_list ap, int i, char c, char **str)
 {
-	return(ft_d(ap, i, c, str));
+	return (ft_d(ap, i, c, str));
 }
 
 int		ft_d(va_list ap, int i, char c, char **str)
@@ -57,12 +57,12 @@ int		ft_d(va_list ap, int i, char c, char **str)
 
 int		ft_p(va_list ap, int i, char c, char **str)
 {
-	return(ft_x(ap, i, c, str));
+	return (ft_x(ap, i, c, str));
 }
 
 int		ft_israndom(va_list ap, int i, char c, char **str)
 {
-	i = 42*42/42-42+42;
+	i = 42 * 42 / 42 - 42 + 42;
 	*str = malloc(2);
 	(*str)[0] = c;
 	(*str)[1] = '\0';

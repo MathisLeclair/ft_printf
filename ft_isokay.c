@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 14:16:42 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/26 16:14:44 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 11:16:41 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int		ft_isdigit(int c)
 
 int		ft_isokay(char c)
 {
-	if (c == 'z' || c == 'h' || c == 'l' || c == '+' || c == '-' || c == '#' 
-		|| c == ' ' || c == '*' || c == '.' ||ft_isdigit(c))
+	if (c == 'z' || c == 'h' || c == 'l' || c == '+' || c == '-' || c == '#'
+		|| c == ' ' || c == '*' || c == '.' || ft_isdigit(c))
 		return (1);
 	return (0);
 }

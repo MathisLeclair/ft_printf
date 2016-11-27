@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/26 16:11:13 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 11:13:55 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	transfo(char *str, va_list ap, int j, char **machin)
 			k = -2;
 	}
 	i = ft_type()[j](ap, k, str[i - 1], machin);
-	ft_print(*machin, i);
+	ft_print(*machin, i, 0);
 }
 
-char 	*ft_findpara(char **str)
+char	*ft_findpara(char **str)
 {
 	char	*res;
 	int		j;
@@ -71,7 +71,7 @@ char	*troncage(char *str)
 	i = 0;
 	while (str[i] != '%' && str[i])
 		i++;
-	ft_print(str, i);
+	ft_print(str, i, 0);
 	return (str + i);
 }
 
@@ -81,6 +81,7 @@ int		ft_printf(const char *str, ...)
 	char	*str4;
 	char	*amod;
 	char	*machin;
+	int		temp;
 
 	machin = NULL;
 	str4 = ft_strdup(str);
@@ -94,5 +95,6 @@ int		ft_printf(const char *str, ...)
 		if (*amod != 0)
 			transfo(amod, ap, 0, &machin);
 	}
-	return (ft_print(0, 0));
+	temp = ft_print(0, 0, 1);
+	return (temp);
 }

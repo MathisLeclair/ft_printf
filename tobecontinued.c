@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/26 19:09:15 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 11:13:26 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_number(int k, int i, int bool, char **str)
 	if (len < i)
 		tmp = malloc(i + 1);
 	else
-		return k;
+		return (k);
 	tmp = ft_memset(tmp, (bool == 1 ? '0' : ' '), i - len);
 	tmp[i - len] = '\0';
 	ft_strcat(tmp + i - len, *str);
@@ -53,7 +53,7 @@ int		ft_minus(int k, int i, int bool, char **str)
 	char *tmp;
 
 	i = bool;
-	while((*str)[i] == ' ' || (*str)[i] == '0')
+	while ((*str)[i] == ' ' || (*str)[i] == '0')
 		++i;
 	tmp = malloc(k + 1);
 	*tmp = 0;
@@ -63,48 +63,34 @@ int		ft_minus(int k, int i, int bool, char **str)
 	*str = tmp;
 	while (i--)
 		(*str)[i + ft_strlen(tmp)] = ' ';
-	return(k);
+	return (k);
 }
 
-int		main()
+int		ft_hastag(int k, int i, int bool, char **str)
 {
-	char *str;
-	int d;
+	char *tmp;
 
-	d = 4;
-	str = malloc(5);
-	str[0] = '1';
-	str[1] = '2';
-	str[2] = '3';
-	str[3] = '4';
-	str[4] = '\0';
-	d = ft_plus(d, 0, 0, &str);
-	ft_putstr(str);
-	ft_putstr("\n");
-	d = ft_number(d, 8, 1, &str);
-	ft_putstr(str);
-	ft_putstr("\n");
-	d = ft_number(d, 12, 0, &str);
-	ft_putstr(str);
-	ft_putstr("\n");
-	d = ft_minus(d, 0, 0, &str);
-	ft_putstr(str);
+	if (bool == 0)
+	{
+		tmp = *str;
+		free(*str);
+		str = malloc(ft_strlen(tmp) * sizeof(char) + 2);
+		(*str)[0] = '0';
+		while (tmp[i++])
+			(*str)[i + 1] = tmp[i];
+		(*str)[i + 1] = '\0';
+	}
+	else
+	{
+		tmp = *str;
+		free(*str);
+		str = malloc(ft_strlen(tmp) * sizeof(char) + 3);
+		(*str)[0] = '0';
+		(*str)[1] = 'x';
+		while (tmp[i++])
+			(*str)[i + 2] = tmp[i];
+		(*str)[i + 2] = '\0';
+	}
+	free(tmp);
+	return (k);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

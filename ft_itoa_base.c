@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 10:58:50 by exam              #+#    #+#             */
-/*   Updated: 2016/11/26 15:03:44 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/27 11:15:18 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ char	*ft_itoa_base(long long int value, int base)
 		value = value / base;
 		i++;
 	}
-	return(sol(i, neg, save, base));
+	return (sol(i, neg, save, base));
 }

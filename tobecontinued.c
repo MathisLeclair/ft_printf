@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tobecontinued.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 18:57:53 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 15:16:29 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ int		ft_minus(int k, int i, int bool, char **str)
 	char *tmp;
 
 	i = bool;
-	while ((*str)[i] == ' ' || (*str)[i] == '0')
+	while ((*str)[i] == ' ')
 		++i;
+	if (i == 0)
+		while ((*str)[i] == '0')
+			++i;
 	tmp = malloc(k + 1);
 	*tmp = 0;
-	tmp[k] = 0;
 	tmp = ft_strcat(tmp, *str + i);
 	free(*str);
 	*str = tmp;

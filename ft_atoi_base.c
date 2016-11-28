@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/16 18:52:27 by exam              #+#    #+#             */
-/*   Updated: 2016/11/28 10:40:47 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 14:50:13 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int		ft_atoi_base_printf(const char *str, int str_base, int i)
 	nb = 0;
 	str1 = "0123456789abcdef";
 	str2 = "0123456789ABCDEF";
-	if (str[0] == '+' || str[0] == '-')
+	while (str[i] == '+' || str[i] == '-' || str[i] == '#')
 		++i;
 	while ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'f')
-	|| (str[i] >= 'A' && str[i] <= 'F') || (str[i] == '#'))
+	|| (str[i] >= 'A' && str[i] <= 'F'))
 	{
 		if (str[i] == '#')
 			++i;

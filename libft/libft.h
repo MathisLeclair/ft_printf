@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 16:57:48 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 19:09:38 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 17:37:07 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				ft_isdigit(int c);
 int				ft_isprint(int c);
 char			*ft_itoa(int n);
 int				ft_power(long long int value, int power);
-char			*ft_itoa_base(long long int value, int base);
+char			*ft_itoa_base(uintmax_t value, int base, char neg);
 void			*ft_memalloc(size_t size);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t num);
 void			*ft_memchr(const void *s, int c, size_t n);

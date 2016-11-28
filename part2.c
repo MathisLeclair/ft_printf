@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:36:08 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/28 14:26:50 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 18:22:39 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,22 @@ int		ft_x(va_list ap, int i, char c, char **str)
 {
 	unsigned long long int d;
 
+	d = 0;
 	if (i == 1)
-		d = va_arg(ap, unsigned long int);
-	if (i == 2)
-		d = va_arg(ap, unsigned long long int);
-	if (i == 4)
+		d = va_arg(ap, unsigned long);
+	else if (i == 2)
+		d = va_arg(ap, unsigned long long);
+	else if (i == 5)
 		d = va_arg(ap, uintmax_t);
-	if (i == 6)
+	else if (i == 6)
 		d = va_arg(ap, size_t);
 	else
 		d = va_arg(ap, unsigned int);
-	*str = ft_itoa_base(d, 16);
+	if (i == -1)
+		d = (unsigned short)d;
+	if (i == -2)
+		d = (unsigned char)d;
+	*str = ft_itoa_base((d > 0 ? d : -d), 16, (d > 0 ? 0 : 1));
 	i = 0;
 	if (c == 'x')
 	{
@@ -52,11 +57,15 @@ int		ft_d(va_list ap, int i, char c, char **str)
 
 	if (i == 1 || c == 'D')
 		d = va_arg(ap, long int);
-	if (i == 2)
+	else if (i == 2)
 		d = va_arg(ap, long long int);
 	else
 		d = va_arg(ap, int);
-	tmp = ft_itoa_base(d, 10);
+	if (i == -1)
+		d = (short)d;
+	if (i == -2)
+		d = (signed char)d;
+	tmp = ft_itoa_base((d > 0 ? d : -d), 10, (d > 0 ? 0 : 1));
 	*str = malloc(ft_strlen(tmp));
 	**str = 0;
 	ft_strcat(*str, tmp);

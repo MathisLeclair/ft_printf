@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tobecontinued.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/28 15:16:29 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/11/28 18:39:08 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ int		ft_number(int k, int i, int bool, char **str)
 	tmp = ft_memset(tmp, (bool == 1 ? '0' : ' '), i - len);
 	tmp[i - len] = '\0';
 	ft_strcat(tmp + i - len, *str);
+	k = 0;
+	while (tmp[k])
+	{
+		if (tmp[k] == '-' && k > 0 && tmp[k - 1] == '0')
+		{
+			tmp[k] = '0';
+			tmp[0] = '-';
+		}
+		++k;
+	}
 	free(*str);
 	*str = tmp;
 	return (i);
@@ -37,7 +47,9 @@ int		ft_plus(int k, int i, int bool, char **str)
 	char *tmp;
 
 	i = bool;
-	if (ft_isdigit((*str)[0]))
+	if ((*str)[0] == '0')
+		(*str)[0] = '+';
+	if (ft_isdigit((*str)[0]) && (*str)[0] != '0')
 	{
 		tmp = malloc(k + 2);
 		tmp = ft_memset(tmp, '\0', 2);

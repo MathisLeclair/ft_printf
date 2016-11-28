@@ -6,11 +6,12 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 10:58:50 by exam              #+#    #+#             */
-/*   Updated: 2016/11/27 19:09:50 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 18:21:38 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int		ft_power(long long int value, int power)
 {
@@ -21,7 +22,7 @@ int		ft_power(long long int value, int power)
 	return (value);
 }
 
-char	*sol(int i, char neg, long long int save, int base)
+char	*sol(int i, char neg, uintmax_t save, int base)
 {
 	char	*str;
 	char	*slo;
@@ -34,35 +35,26 @@ char	*sol(int i, char neg, long long int save, int base)
 		slo[0] = '-';
 	if (save == 0)
 		slo[0] = '0';
-	while (save < 0)
+	while (save > 0)
 	{
-		j = -1 * (save % base);
-		slo[i - 1] = str[j];
+		j = (save % base);
+		slo[i + neg - 1] = str[j];
 		save = save / base;
 		i--;
 	}
 	return (slo);
 }
 
-char	*ft_itoa_base(long long int value, int base)
+char	*ft_itoa_base(uintmax_t value, int base, char neg)
 {
 	int				i;
-	long long int	save;
-	char			neg;
+	uintmax_t		save;
 
 	i = 0;
-	neg = 0;
-	if (base == 10 && value < 0)
-	{
-		i++;
-		neg = 1;
-	}
 	if (value == 0)
 		i++;
-	if (value > 0)
-		value *= -1;
 	save = value;
-	while (value < 0)
+	while (value > 0)
 	{
 		value = value / base;
 		i++;

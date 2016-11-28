@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 18:53:34 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 18:58:02 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 10:42:58 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ char	*ft_2long2(int k, int i, char **str)
 		tmp[1] = '\0';
 		ft_strcat(tmp, *str);
 	}
-	else
-		if ((*str)[0] == i)
-			(*str)[k - 1] = '0';
+	else if ((*str)[0] == i)
+		(*str)[k - 1] = '0';
 	return (tmp);
 }
 

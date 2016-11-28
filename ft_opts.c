@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 19:31:03 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 12:55:07 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ int		ft_opts(char *opt, char **str, int i)
 	int		k;
 	char	tab[5];
 
-	printf("str = %s\n", *str);
 	ft_bzero(tab, 5);
 	k = ft_strlen(opt);
-	while (k > 0 && --k)
+	while (k >= 0)
 	{
 		while (k > -1 && ft_isdigit(opt[k]))
 		{
@@ -58,6 +57,7 @@ int		ft_opts(char *opt, char **str, int i)
 			tab[3] = 1;
 		if (opt[k] == '-')
 			tab[4] = 1;
+		--k;
 	}
 	return (ft_opts2(tab, str, i, opt));
 }

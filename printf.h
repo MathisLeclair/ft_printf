@@ -6,31 +6,30 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 13:53:34 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 16:13:50 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 13:04:36 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 # define PRINTF_H
-///
-#include <stdio.h>
-///
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include "./libft/libft.h"
 
+#include <stdio.h>
+
 typedef int (*t_fun)(va_list, int, char, char **);
 typedef int (*t_opt)(int, int, int, char **);
 
 void		ft_error(void);
-int			ft_printf(const char *str, ...);
 t_fun		*ft_type(void);
 t_opt		*ft_options(void);
+int			ft_isokay(char c);
+int			ft_printf(const char *str, ...);
+void		ft_apliopt(char *res, char *str);
 int			ft_print(char *str, int k, int u);
 int			ft_opts(char *opt, char **str, int i);
-void		ft_apliopt(char *res, char *str);
-int			ft_isokay(char c);
 char		*ft_itoa_base(long long int value, int base);
 int			ft_atoi_base_printf(const char *str, int str_base, int i);
 
@@ -54,6 +53,5 @@ int			ft_hastag(int k, int i, int boul, char **str);
 int			ft_number(int k, int i, int boul, char **str);
 int			ft_minus(int k, int i, int boul, char **str);
 int			ft_plus(int k, int i, int boul, char **str);
-
 
 #endif

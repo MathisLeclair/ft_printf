@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/16 18:52:27 by exam              #+#    #+#             */
-/*   Updated: 2016/11/27 18:43:45 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 10:40:47 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_atoi_base_printf(const char *str, int str_base, int i)
 	while ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'f')
 	|| (str[i] >= 'A' && str[i] <= 'F') || (str[i] == '#'))
 	{
-		if(str[i] == '#')
+		if (str[i] == '#')
 			++i;
 		j = 0;
 		while (str[i] != str1[j] && str[i] != str2[j])

@@ -6,11 +6,32 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 19:30:53 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/28 13:44:26 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+int		ft_findmod(int i, char *str, int k)
+{
+	if (i > 1 && str[i - 2] == 'l')
+	{
+		k = 1;
+		if (i > 2 && str[i - 3] == 'l')
+			k = 2;
+	}
+	else if (i > 1 && str[i - 2] == 'h')
+	{
+		k = -2;
+		if (i > 2 && str[i - 3] == 'h')
+			k = -2;
+	}
+	else if(i > 1 && str[i - 2] == 'j')
+		k = 5;
+	else if (i > 1 && str[i - 2] == 'z')
+		k = 6;
+	return (k);
+}
 
 void	transfo(char *str, va_list ap, int j, char **machin)
 {
@@ -21,21 +42,9 @@ void	transfo(char *str, va_list ap, int j, char **machin)
 	pos[0] = "sdouxcip";
 	pos[1] = "SDOUXC\0\0";
 	i = ft_strlen(str);
-	k = 0;
 	while (str[i - 1] != pos[0][j] && str[i - 1] != pos[1][j] && pos[0][j])
 		++j;
-	if (i > 2 && str[i - 2] == 'l')
-	{
-		k = 1;
-		if (i > 3 && str[i - 3] == 'l')
-			k = 2;
-	}
-	else if (i > 2 && str[i - 2] == 'h')
-	{
-		k = -1;
-		if (i > 3 && str[i - 3] == 'h')
-			k = -2;
-	}
+	k = ft_findmod(i, str, 0);
 	i = ft_type()[j](ap, k, str[i - 1], machin);
 	i = ft_opts(str, machin, i);
 	ft_print(*machin, i, 0);

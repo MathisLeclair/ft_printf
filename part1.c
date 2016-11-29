@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   part1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/29 13:09:17 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/29 16:15:26 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int		ft_s(va_list ap, int i, char c, char **str)
 	tmp = va_arg(ap, char *);
 	if (tmp == NULL)
 		tmp = "(null)";
-	if (tmp == NULL)
-		return (6);
 	*str = malloc(ft_strlen(tmp) + 1);
 	i = 0;
 	while (tmp[i])

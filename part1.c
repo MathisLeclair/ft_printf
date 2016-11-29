@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/28 17:52:24 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/29 13:09:17 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int		ft_s(va_list ap, int i, char c, char **str)
 		return (sizeof(wchar_t) * i);
 	}
 	tmp = va_arg(ap, char *);
+	if (tmp == NULL)
+		tmp = "(null)";
+	if (tmp == NULL)
+		return (6);
 	*str = malloc(ft_strlen(tmp) + 1);
 	i = 0;
 	while (tmp[i])
@@ -76,13 +80,15 @@ int		ft_o(va_list ap, int i, char c, char **str)
 
 int		ft_u(va_list ap, int i, char c, char **str)
 {
-	unsigned long long int	d;
-	char					*tmp;
+	uintmax_t	d;
+	char		*tmp;
 
 	if (i == 1 || c == 'D')
 		d = va_arg(ap, unsigned long int);
 	else if (i == 2)
 		d = va_arg(ap, unsigned long long int);
+	else if (i == 5)
+		d = va_arg(ap, uintmax_t);
 	else
 		d = va_arg(ap, unsigned int);
 	tmp = ft_itoa_base(d, 10, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_opts.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/28 15:23:54 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/11/29 11:22:21 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		ft_opts2(char *tab, char **str, int i, char *opt)
 		if (opt[ft_strlen(opt) - 1] == 'X')
 			(*str)[1] = 'X';
 	}
-	if (tab[3] == 1)
+	if (tab[3] == 1 && opt[ft_strlen(opt) - 1] != 'u')
 		i = ft_plus(i, 0, 0, str);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/29 13:14:03 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/29 18:59:12 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_findmod(int i, char *str, int k)
 	return (k);
 }
 
-void	transfo(char *str, va_list ap, int j, char **machin)
+int		transfo(char *str, va_list ap, int j, char **machin)
 {
 	int		i;
 	int		k;
@@ -46,8 +46,11 @@ void	transfo(char *str, va_list ap, int j, char **machin)
 		++j;
 	k = ft_findmod(i, str, 0);
 	i = ft_type()[j](ap, k, str[i - 1], machin);
+	if (i == -1)
+		return (-1);
 	i = ft_opts(str, machin, i);
 	ft_print(*machin, i, 0);
+	return (0);
 }
 
 char	*ft_findpara(char **str)
@@ -92,6 +95,7 @@ int		ft_printf(const char *str, ...)
 	char	*amod;
 	char	*machin;
 	int		temp;
+	int		i;
 
 	machin = NULL;
 	str4 = ft_strdup(str);
@@ -103,8 +107,10 @@ int		ft_printf(const char *str, ...)
 			break ;
 		amod = ft_findpara(&str4);
 		if (*amod != 0)
-			transfo(amod, ap, 0, &machin);
+			i = transfo(amod, ap, 0, &machin);
 	}
 	temp = ft_print(0, 0, 1);
+	if (i == -1)
+		temp = -1;
 	return (temp);
 }

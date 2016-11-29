@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   part1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/29 16:15:26 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/11/29 19:08:29 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		ft_s(va_list ap, int i, char c, char **str)
 	{
 		i = 0;
 		t = va_arg(ap, wchar_t *);
+		if (!ft_isascii((int)(*t)))
+			return (-1);
 		while (t[i])
 			++i;
 		*str = malloc(sizeof(wchar_t) * i);

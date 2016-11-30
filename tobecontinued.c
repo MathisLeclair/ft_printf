@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/28 18:39:08 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/30 11:32:33 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,8 @@ int		ft_minus(int k, int i, int bool, char **str)
 	char *tmp;
 
 	i = bool;
-	while ((*str)[i] == ' ')
+	while ((*str)[i] == ' ' || (*str)[i] == '0')
 		++i;
-	if (i == 0)
-		while ((*str)[i] == '0')
-			++i;
 	tmp = malloc(k + 1);
 	*tmp = 0;
 	tmp = ft_strcat(tmp, *str + i);

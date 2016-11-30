@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/29 18:59:12 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/30 16:54:57 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_findmod(int i, char *str, int k)
 	}
 	else if (i > 1 && str[i - 2] == 'h')
 	{
-		k = -2;
+		k = -1;
 		if (i > 2 && str[i - 3] == 'h')
 			k = -2;
 	}
@@ -109,8 +109,8 @@ int		ft_printf(const char *str, ...)
 		if (*amod != 0)
 			i = transfo(amod, ap, 0, &machin);
 	}
-	temp = ft_print(0, 0, 1);
 	if (i == -1)
-		temp = -1;
+		return (-1);
+	temp = ft_print(0, 0, 1);
 	return (temp);
 }

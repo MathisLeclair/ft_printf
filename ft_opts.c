@@ -3,78 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   ft_opts.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/29 11:22:21 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/30 23:35:21 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		ft_opts2(char *tab, char **str, int i, char *opt)
+int		ft_opts2(char *tab, char *opt, char **str, int i)
 {
-	int j;
-	int k;
-	int l;
-
-	l = 0;
-	j = 0;
-	k = 0;
-	if (tab[0] == 1 && tab[1] == 1)
-		i = ft_number(i, ft_atoi_base_printf((tab[3] == 1
-			&& tab[4] == 1 ? (opt + 1) : opt), 10, 0), 1, str);
-	else if (tab[1] == 1 && tab[0] == 0)
-		i = ft_number(i, ft_atoi_base_printf((tab[3] == 1
-			&& tab[4] == 1 ? (opt + 1) : opt), 10, 0), 0, str);
-	if (tab[4] == 1)
-		i = ft_minus(i, 0, 0, str);
-	while ((*str)[l])
+	if (tab[5] != 0)
 	{
-		if ((*str)[l] == '0')
-			++j;
-		if (ft_isdigit((*str)[l]))
-			++k;
-		++l;
+		if (opt[ft_strlen(opt) - 1] != 's')
+			i = ft_number(i, ft_atoi_base_printf(opt + tab[5], 10, 0), 1, str);
+		else
+		{
+			if (ft_atoi_base_printf(opt + tab[5] + 1, 10, 0) < i)
+			{
+				printf("int = %d\n", ft_atoi_base_printf(opt + tab[5], 10, 0));
+				(*str)[ft_atoi_base_printf(opt + tab[5] + 1, 10, 0)] = 0;
+				i = ft_strlen(*str);
+			}
+		}
 	}
-	if (tab[2] == 1 && (j != 1 || k > 1))
+	if (tab[4] == 1)
+		i = ft_number(i, ft_atoi_base_printf(opt, 10, 0), tab[3], str);
+	if (tab[2] == 1)
+		ft_minus(i, 0, tab[5] - 1, str);
+	if (tab[0] == 1 && ((*str)[0] != '0' || (*str)[1] != 0))
 	{
-		if (opt[ft_strlen(opt) - 1] == 'o')
+		if(opt[ft_strlen(opt) - 1] == 'o')
 			i = ft_hastag(0, i, 0, str);
 		else
 			i = ft_hastag(0, i, 1, str);
 		if (opt[ft_strlen(opt) - 1] == 'X')
 			(*str)[1] = 'X';
 	}
-	if (tab[3] == 1 && opt[ft_strlen(opt) - 1] != 'u')
+	if (tab[1] == 1 && opt[ft_strlen(opt) - 1] != 'u')
 		i = ft_plus(i, 0, 0, str);
 	return (i);
 }
 
 int		ft_opts(char *opt, char **str, int i)
 {
+	char	done;
 	int		k;
-	char	tab[5];
+	int		len;
+	char	tab[6];
 
-	ft_bzero(tab, 5);
-	k = ft_strlen(opt);
-	while (k >= 0)
+	ft_memset(tab, 0, 6);
+	len = ft_strlen(opt);
+	done = 0;
+	k = -1;
+	while (++k < len)
 	{
-		while (k > -1 && ft_isdigit(opt[k]))
-		{
-			if (opt[k] == '0')
-				if (k == 0 || !(ft_isdigit(opt[k - 1])))
-					tab[0] = 1;
-			tab[1] = 1;
-			--k;
-		}
 		if (opt[k] == '#')
-			tab[2] = 1;
+			tab[0] = 1;
 		if (opt[k] == '+')
-			tab[3] = 1;
+			tab[1] = 1;
 		if (opt[k] == '-')
-			tab[4] = 1;
-		--k;
+			tab[2] = 1;
+		if (ft_isdigit(opt[k]))
+			if (opt[k] != '0' && (done = 1) && tab[5] == 0)
+				tab[4] = 1;
+		if (opt[k] == '.')
+			tab[5] = k + 1;
+		if (opt[k] == '0' && done == 0)
+			tab[3] = 1;
 	}
-	return (ft_opts2(tab, str, i, opt));
+	return (ft_opts2(tab, opt, str, i));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tobecontinued.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/30 11:32:33 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/11/30 23:35:00 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int		ft_number(int k, int i, int bool, char **str)
 	char	*tmp;
 	int		len;
 
+	// if (i == 0)
+	// {
+	// 	**str = 0;
+	// 	return (0);
+	// }
 	if (i < 0)
 		i *= -1;
 	len = ft_strlen(*str);
@@ -47,7 +52,7 @@ int		ft_plus(int k, int i, int bool, char **str)
 	char *tmp;
 
 	i = bool;
-	if ((*str)[0] == '0')
+	if ((*str)[0] == '0' && (*str)[1] != 0)
 		(*str)[0] = '+';
 	if (ft_isdigit((*str)[0]) && (*str)[0] != '0')
 	{
@@ -66,8 +71,8 @@ int		ft_minus(int k, int i, int bool, char **str)
 {
 	char *tmp;
 
-	i = bool;
-	while ((*str)[i] == ' ' || (*str)[i] == '0')
+	i = 0;
+	while ((*str)[i] == ' ' || ((*str)[i] == '0' && bool == -1))
 		++i;
 	tmp = malloc(k + 1);
 	*tmp = 0;

@@ -18,7 +18,7 @@ int   main()
   i =58;
 
   printf("%%s:\n");
-  ret1 = printf("vrai = {%.x %x}\n", 0, 0);
-  ret2 = ft_printf("notr = %.2s is a string", "this");
+  ret1 = printf("vrai = %.2d\n", -1);
+  ret2 = ft_printf("notr = %.2d\n", -1);
   printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
 }

@@ -6,7 +6,7 @@
 /*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/30 23:35:21 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/11/30 23:47:26 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 		{
 			if (ft_atoi_base_printf(opt + tab[5] + 1, 10, 0) < i)
 			{
-				printf("int = %d\n", ft_atoi_base_printf(opt + tab[5], 10, 0));
-				(*str)[ft_atoi_base_printf(opt + tab[5] + 1, 10, 0)] = 0;
+				(*str)[ft_atoi_base_printf(opt + tab[5], 10, 0)] = 0;
 				i = ft_strlen(*str);
 			}
 		}
 	}
 	if (tab[4] == 1)
-		i = ft_number(i, ft_atoi_base_printf(opt, 10, 0), tab[3], str);
+		i = ft_number(i, ft_atoi_base_printf(opt, 10, 0), (tab[5] == 0 ? tab[3] : 0), str);
 	if (tab[2] == 1)
 		ft_minus(i, 0, tab[5] - 1, str);
 	if (tab[0] == 1 && ((*str)[0] != '0' || (*str)[1] != 0))
@@ -42,7 +41,7 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 			(*str)[1] = 'X';
 	}
 	if (tab[1] == 1 && opt[ft_strlen(opt) - 1] != 'u')
-		i = ft_plus(i, 0, 0, str);
+		i = ft_plus(i, 0, tab[5], str);
 	return (i);
 }
 

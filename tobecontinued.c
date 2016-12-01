@@ -17,11 +17,11 @@ int		ft_number(int k, int i, int bool, char **str)
 	char	*tmp;
 	int		len;
 
-	// if (i == 0)
-	// {
-	// 	**str = 0;
-	// 	return (0);
-	// }
+	if (i == 0 && (*str)[0] == '0' && (*str)[1] == 0)
+	{
+		**str = 0;
+		return (0);
+	}
 	if (i < 0)
 		i *= -1;
 	len = ft_strlen(*str);
@@ -52,13 +52,15 @@ int		ft_plus(int k, int i, int bool, char **str)
 	char *tmp;
 
 	i = bool;
-	if ((*str)[0] == '0' && (*str)[1] != 0)
+	if ((*str)[0] == '0' && (*str)[1] != 0 && bool == 0)
 		(*str)[0] = '+';
-	if (ft_isdigit((*str)[0]) && (*str)[0] != '0')
+	if (ft_isdigit((*str)[0]))
 	{
 		tmp = malloc(k + 2);
 		tmp = ft_memset(tmp, '\0', 2);
 		ft_strcat(tmp + 1, *str);
+		if ((*str)[ft_strlen(*str) - 1] == ' ' && --k)
+			tmp[k + 1] = 0;
 		tmp[0] = '+';
 		free(*str);
 		*str = tmp;
@@ -72,10 +74,14 @@ int		ft_minus(int k, int i, int bool, char **str)
 	char *tmp;
 
 	i = 0;
+	if ((*str)[i] == '-')
+		++i;
 	while ((*str)[i] == ' ' || ((*str)[i] == '0' && bool == -1))
 		++i;
 	tmp = malloc(k + 1);
-	*tmp = 0;
+	if ((*str)[0] == '-')
+		tmp[0] = '-';
+	tmp[((*str)[0] == '-' ? 1 : 0)] = 0;
 	tmp = ft_strcat(tmp, *str + i);
 	free(*str);
 	*str = tmp;

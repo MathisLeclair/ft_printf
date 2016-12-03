@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/30 16:54:57 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/03 15:59:04 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*troncage(char *str)
 	int i;
 
 	i = 0;
-	while (str[i] != '%' && str[i])
+	while (str[i] && str[i] != '%')
 		i++;
 	ft_print(str, i, 0);
 	return (str + i);

@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/30 10:54:10 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/03 19:06:32 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,25 @@ int		ft_s(va_list ap, int i, char c, char **str)
 
 int		ft_c(va_list ap, int i, char c, char **str)
 {
-	wchar_t t;
+	unsigned int wide;
 
-	if (c == 'S' || i == 1)
+	if (c == 'C' || i == 1)
 	{
-		i = 0;
-		t = va_arg(ap, wchar_t);
-		*str = malloc(sizeof(wchar_t));
-		*str = (char *)&t;
-		return (4);
+		*str = malloc(sizeof(wint_t) + 1);
+		ft_bzero(*str, sizeof(wint_t) + 1);
+		wide = va_arg(ap, wint_t);
+		ft_putstr("\nwide = ");
+		write(1, &wide, 4);
+		i = 4;
+		while (wide >> 24 == 0 && i--)
+			wide = wide << 8;
+		printf("wide = %08x\n", wide);
+		ft_putstr("\nwide2 = ");
+		write(1, &wide, 1);
+		write(1, &wide + 1, 1);
+		i = -1;
+		ft_memcpy(*str, &wide, 4);
+		return (ft_strlen(*str));
 	}
 	*str = malloc(2);
 	*str[0] = va_arg(ap, int);
@@ -83,7 +93,7 @@ int		ft_u(va_list ap, int i, char c, char **str)
 	uintmax_t	d;
 	char		*tmp;
 
-	if (i == 1 || c == 'D')
+	if (i == 1 || c == 'U')
 		d = va_arg(ap, unsigned long int);
 	else if (i == 2)
 		d = va_arg(ap, unsigned long long int);

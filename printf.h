@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 13:53:34 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/28 17:46:49 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/03 16:40:10 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <wchar.h>
 # include "./libft/libft.h"
 
 #include <stdio.h>
@@ -28,8 +29,8 @@ t_opt		*ft_options(void);
 int			ft_isokay(char c);
 int			ft_printf(const char *str, ...);
 void		ft_apliopt(char *res, char *str);
-int			ft_print(char *str, int k, int u);
 int			ft_opts(char *opt, char **str, int i);
+int			ft_print(char *str, int k, int u);
 char		*ft_itoa_base(uintmax_t value, int base, char neg);
 int			ft_atoi_base_printf(const char *str, int str_base, int i);
 
@@ -48,7 +49,6 @@ int			ft_X(va_list ap, int k, char c, char **str);
 int			ft_C(va_list ap, int k, char c, char **str);
 int			ft_c(va_list ap, int k, char c, char **str);
 int			ft_israndom(va_list ap, int i, char c, char **str);
-char		*ft_itoa_base_printf(uintmax_t value, int base);
 
 int			ft_hastag(int k, int i, int boul, char **str);
 int			ft_number(int k, int i, int boul, char **str);

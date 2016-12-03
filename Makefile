@@ -6,7 +6,7 @@
 #    By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 19:21:21 by mleclair          #+#    #+#              #
-#    Updated: 2016/11/29 13:00:20 by mleclair         ###   ########.fr        #
+#    Updated: 2016/12/03 16:42:14 by mleclair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,7 @@ $(NAME): $(OBJ)
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 $(OBJ): %.o: %.c
-	@gcc -c -Wall -Wextra -Werror $< -o $@
+	@gcc -c -Wall -g -Wextra -Werror $< -o $@
 
 clean:
 	@rm -rf $(OBJ)

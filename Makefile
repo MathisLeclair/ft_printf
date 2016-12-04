@@ -6,7 +6,7 @@
 #    By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 19:21:21 by mleclair          #+#    #+#              #
-#    Updated: 2016/12/03 16:42:14 by mleclair         ###   ########.fr        #
+#    Updated: 2016/12/04 16:55:07 by mleclair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ FILE =	$(PATH)ft_atoi \
 		addprint \
 		diese \
 		ft_atoi_base \
+		conv \
 		ft_isokay \
 		ft_opts \
 		part1 \
@@ -118,7 +119,7 @@ $(NAME): $(OBJ)
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 $(OBJ): %.o: %.c
-	@gcc -c -Wall -g -Wextra -Werror $< -o $@
+	@gcc -c -Wall -Wextra -Werror $< -o $@
 
 clean:
 	@rm -rf $(OBJ)

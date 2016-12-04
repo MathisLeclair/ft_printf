@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/03 19:06:32 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/04 17:20:01 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,11 @@ int		ft_s(va_list ap, int i, char c, char **str)
 
 int		ft_c(va_list ap, int i, char c, char **str)
 {
-	unsigned int wide;
-
 	if (c == 'C' || i == 1)
 	{
-		*str = malloc(sizeof(wint_t) + 1);
-		ft_bzero(*str, sizeof(wint_t) + 1);
-		wide = va_arg(ap, wint_t);
-		ft_putstr("\nwide = ");
-		write(1, &wide, 4);
-		i = 4;
-		while (wide >> 24 == 0 && i--)
-			wide = wide << 8;
-		printf("wide = %08x\n", wide);
-		ft_putstr("\nwide2 = ");
-		write(1, &wide, 1);
-		write(1, &wide + 1, 1);
-		i = -1;
-		ft_memcpy(*str, &wide, 4);
-		return (ft_strlen(*str));
+		*str = malloc(4);
+		conv(va_arg(ap, wint_t), *str);
+		return (4);
 	}
 	*str = malloc(2);
 	*str[0] = va_arg(ap, int);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 15:49:52 by bfrochot          #+#    #+#             */
-/*   Updated: 2016/12/04 16:45:51 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/12/04 16:54:35 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,4 @@ int		conv(int nb, char *new)
 	else
 		return (-1);
 	return (1);
-}
-
-int		main()
-{
-	char *new;
-
-	new = malloc(4);
-	ft_bzero(new, 4);
-	conv(0xa6a8, new);
-	write(1, new, 4);
-	return (0);
 }

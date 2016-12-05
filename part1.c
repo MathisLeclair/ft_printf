@@ -6,28 +6,45 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/04 17:20:01 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/05 21:17:46 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
+int		ft_wstrlen(wchar_t *str)
+{
+	wchar_t *tmp;
+
+	tmp = str;
+	while (*tmp != 0)
+		tmp++;
+	return (tmp - str);
+}
+
 int		ft_s(va_list ap, int i, char c, char **str)
 {
 	wchar_t	*t;
 	char	*tmp;
+	int		u;
+	int		k;
 
 	if (c == 'S' || i == 1)
 	{
+		u = 0;
 		i = 0;
 		t = va_arg(ap, wchar_t *);
-		if (!ft_isascii((int)(*t)))
+		if (t == NULL)
 			return (-1);
+		*str = malloc((ft_wstrlen(t) + 1) * sizeof(wchar_t));
+		ft_bzero(*str, (ft_wstrlen(t) + 1));
 		while (t[i])
+		{
+			k = conv(t[i], *str + u);
+			u += k;
 			++i;
-		*str = malloc(sizeof(wchar_t) * i);
-		*str = (char *)t;
-		return (sizeof(wchar_t) * i);
+		}
+		return (u);
 	}
 	tmp = va_arg(ap, char *);
 	if (tmp == NULL)
@@ -45,11 +62,21 @@ int		ft_s(va_list ap, int i, char c, char **str)
 
 int		ft_c(va_list ap, int i, char c, char **str)
 {
+	wint_t t;
+
 	if (c == 'C' || i == 1)
 	{
 		*str = malloc(4);
-		conv(va_arg(ap, wint_t), *str);
-		return (4);
+		conv(t = va_arg(ap, wint_t), *str);
+		if (t <= 0x7F)
+			return (1);
+		else if (t <= 0x7FF)
+			return (2);
+		else if (t <= 0xFFFF)
+			return (3);
+		else if (t <= 0x10FFFF)
+			return (4);
+		return (-1);
 	}
 	*str = malloc(2);
 	*str[0] = va_arg(ap, int);

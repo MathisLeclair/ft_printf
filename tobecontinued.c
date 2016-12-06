@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/02 16:49:47 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 13:34:04 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,35 @@ int		ft_plus(int k, int i, int bool, char **str)
 		return (k + 1);
 	}
 	return (k);
+}
+
+int		ft_moncul(char *opt, char **str, int i)
+{
+	size_t	k;
+	char	*tmp;
+
+	tmp = malloc(i + 2);
+	if (opt[ft_strlen(opt) - 1] == 'd' || opt[ft_strlen(opt) - 1] == 'i')
+	{
+		k = 0;
+		while (ft_isdigit((*str)[k]))
+			++k;
+		if ((*str)[ft_strlen(*str) - 1] == ' ' || k == ft_strlen(*str))
+		{
+			tmp[0] = ' ';
+			k = 0;
+			while (str[k])
+			{
+				tmp[k + 1] = (*str)[k];
+				++k;
+			}
+			tmp[k + 1] = 0;
+			free(*str);
+			*str = tmp;
+			return (i + 1);
+		}
+	}
+	return (i);
 }
 
 int		ft_minus(int k, int i, int bool, char **str)

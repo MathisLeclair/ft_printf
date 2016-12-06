@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/05 23:17:39 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 12:28:49 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 	if (tab[1] == 1 && opt[ft_strlen(opt) - 1] != 'u')
 		i = ft_plus(i, 0, tab[5], str);
 	if (tab[6])
-		ft_moncul(opt, str);
+		i = ft_moncul(opt, str, i);
 	return (i);
 }
 

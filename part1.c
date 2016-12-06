@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/05 21:17:46 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 16:56:50 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ int		ft_s(va_list ap, int i, char c, char **str)
 		i = 0;
 		t = va_arg(ap, wchar_t *);
 		if (t == NULL)
-			return (-1);
+		{
+			*str = malloc(7);
+			**str = 0;
+			ft_strcat(*str, "(null)");
+			return (6);
+		}
 		*str = malloc((ft_wstrlen(t) + 1) * sizeof(wchar_t));
 		ft_bzero(*str, (ft_wstrlen(t) + 1));
 		while (t[i])
@@ -79,20 +84,29 @@ int		ft_c(va_list ap, int i, char c, char **str)
 		return (-1);
 	}
 	*str = malloc(2);
-	*str[0] = va_arg(ap, int);
+	*str[0] = (char)va_arg(ap, int);
 	(*str)[1] = '\0';
 	return (1);
 }
 
 int		ft_o(va_list ap, int i, char c, char **str)
 {
-	long unsigned int	d;
-	char				*tmp;
+	uintmax_t	d;
+	char		*tmp;
 
 	if (i == 1 || c == 'O')
 		d = va_arg(ap, long unsigned int);
+	else if (i == 2)
+		d = va_arg(ap, unsigned long long int);
+	else if (i == -2)
+		d = (unsigned char)va_arg(ap, int);
+	else if (i == 5)
+		d = va_arg(ap, uintmax_t);
+	else if (i == 6)
+		d = va_arg(ap, size_t);
 	else
 		d = va_arg(ap, unsigned int);
+
 	tmp = ft_itoa_base(d, 8, 0);
 	*str = malloc(ft_strlen(tmp));
 	**str = 0;
@@ -112,6 +126,10 @@ int		ft_u(va_list ap, int i, char c, char **str)
 		d = va_arg(ap, unsigned long long int);
 	else if (i == 5)
 		d = va_arg(ap, uintmax_t);
+	else if (i == 6)
+		d = va_arg(ap, size_t);
+	else if (i == -2)
+		d = (unsigned char)va_arg(ap, int);
 	else
 		d = va_arg(ap, unsigned int);
 	tmp = ft_itoa_base(d, 10, 0);

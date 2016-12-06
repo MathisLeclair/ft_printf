@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:36:08 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/30 16:49:14 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 16:53:42 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,10 @@ int		ft_d(va_list ap, int i, char c, char **str)
 		d = va_arg(ap, intmax_t);
 	else if (i == 6)
 		d = va_arg(ap, unsigned long int);
+	else if (i == -2)
+		d = (char)va_arg(ap, int);
 	else
 		d = va_arg(ap, int);
-	if (i == -1)
-		d = (short)d;
-	if (i == -2)
-		d = (signed char)d;
 	tmp = ft_itoa_base((d > 0 ? d : -d), 10, (d > 0 ? 0 : 1));
 	*str = malloc(ft_strlen(tmp));
 	**str = 0;

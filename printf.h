@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 13:53:34 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 12:28:58 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 14:27:00 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		ft_apliopt(char *res, char *str);
 int			ft_moncul(char *opt, char **str, int i);
 int			ft_opts(char *opt, char **str, int i);
 int			ft_print(char *str, int k, int u);
+void		ft_memlcat(char *dst, const char *src, int start, int end);
 char		*ft_itoa_base(uintmax_t value, int base, char neg);
 int			ft_atoi_base_printf(const char *str, int str_base, int i);
 

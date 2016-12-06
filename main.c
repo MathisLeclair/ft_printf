@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 19:23:47 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 13:32:34 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 18:39:40 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int   main()
   int ret2 = 0;
 
   // printf("Locale is: %s\n", setlocale(LC_ALL, "en_US"));
-  ret1 = printf("vrai = % i\n", 9999);
-  ret2 = ft_printf("notr = % i\n", 9999);
+  ret1 = printf("vrai = %15.4d\n", -42);
+  ret2 = ft_printf("notr = %15.4d\n", -42);
   printf("ret1 = %d, ret2 = %d\n\n", ret1, ret2);
 }

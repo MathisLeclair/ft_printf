@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 12:28:49 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 18:38:58 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 {
 	if (tab[5] != 0)
 	{
-		if (opt[ft_strlen(opt) - 1] != 's')
+		if (opt[ft_strlen(opt) - 1] != 's' && opt[ft_strlen(opt) - 1] != 'S')
 			i = ft_number(i, ft_atoi_base_printf(opt + tab[5], 10, 0), 1, str);
 		else
 		{
@@ -31,7 +31,7 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 		i = ft_number(i, ft_atoi_base_printf(opt, 10, 0), (tab[5] == 0 ? tab[3] : 0), str);
 	if (tab[2])
 		ft_minus(i, 0, tab[5] - 1, str);
-	if (tab[0] == 1 && ((*str)[0] != '0' || (*str)[1] != 0))
+	if (tab[0] == 1 && opt[ft_strlen(opt) - 1] != 'c' && ((*str)[0] != '0' || (*str)[1] != 0))
 	{
 		if(opt[ft_strlen(opt) - 1] == 'o' || opt[ft_strlen(opt) - 1] == 'O')
 			i = ft_hastag(0, i, 0, str);
@@ -40,7 +40,7 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 		if (opt[ft_strlen(opt) - 1] == 'X')
 			(*str)[1] = 'X';
 	}
-	if (tab[1] == 1 && opt[ft_strlen(opt) - 1] != 'u')
+	if (tab[1] == 1 && opt[ft_strlen(opt) - 1] != 'u' && opt[ft_strlen(opt) - 1] != 'o' && opt[ft_strlen(opt) - 1] != 'O')
 		i = ft_plus(i, 0, tab[5], str);
 	if (tab[6])
 		i = ft_moncul(opt, str, i);
@@ -75,6 +75,8 @@ int		ft_opts(char *opt, char **str, int i)
 			tab[3] = 1;
 		if (opt[k] == ' ')
 			tab[6] = 1;
+		if (tab[2] == 1)
+			tab[3] = 0;
 	}
 	return (ft_opts2(tab, opt, str, i));
 }

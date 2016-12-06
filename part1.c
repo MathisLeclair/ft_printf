@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   part1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 16:56:50 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:19:51 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int		ft_o(va_list ap, int i, char c, char **str)
 		d = va_arg(ap, size_t);
 	else
 		d = va_arg(ap, unsigned int);
-
 	tmp = ft_itoa_base(d, 8, 0);
 	*str = malloc(ft_strlen(tmp));
 	**str = 0;

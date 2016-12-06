@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   part2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:36:08 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 16:53:42 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:34:23 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,11 @@ int		ft_x(va_list ap, int i, char c, char **str)
 	if (i == -2)
 		d = (unsigned char)d;
 	*str = ft_itoa_base((d > 0 ? d : -d), 16, (d > 0 ? 0 : 1));
-	i = 0;
+	i = -1;
 	if (c == 'x' || c == 'p')
-	{
-		while ((*str)[i])
-		{
+		while ((*str)[++i])
 			if ((*str)[i] >= 'A' && (*str)[i] <= 'F')
 				(*str)[i] += 32;
-			++i;
-		}
-	}
 	return (ft_strlen(*str));
 }
 

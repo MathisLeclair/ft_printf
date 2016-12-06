@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_opts.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 18:38:58 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:38:08 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,22 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 		}
 	}
 	if (tab[4])
-		i = ft_number(i, ft_atoi_base_printf(opt, 10, 0), (tab[5] == 0 ? tab[3] : 0), str);
+		i = ft_number(i, ft_atoi_base_printf(opt, 10, 0),
+			(tab[5] == 0 ? tab[3] : 0), str);
 	if (tab[2])
 		ft_minus(i, 0, tab[5] - 1, str);
-	if (tab[0] == 1 && opt[ft_strlen(opt) - 1] != 'c' && ((*str)[0] != '0' || (*str)[1] != 0))
+	if (tab[0] == 1 && opt[ft_strlen(opt) - 1] != 'c'
+		&& ((*str)[0] != '0' || (*str)[1] != 0))
 	{
-		if(opt[ft_strlen(opt) - 1] == 'o' || opt[ft_strlen(opt) - 1] == 'O')
+		if (opt[ft_strlen(opt) - 1] == 'o' || opt[ft_strlen(opt) - 1] == 'O')
 			i = ft_hastag(0, i, 0, str);
 		else
 			i = ft_hastag(0, i, 1, str);
 		if (opt[ft_strlen(opt) - 1] == 'X')
 			(*str)[1] = 'X';
 	}
-	if (tab[1] == 1 && opt[ft_strlen(opt) - 1] != 'u' && opt[ft_strlen(opt) - 1] != 'o' && opt[ft_strlen(opt) - 1] != 'O')
+	if (tab[1] == 1 && opt[ft_strlen(opt) - 1] != 'u'
+		&& opt[ft_strlen(opt) - 1] != 'o' && opt[ft_strlen(opt) - 1] != 'O')
 		i = ft_plus(i, 0, tab[5], str);
 	if (tab[6])
 		i = ft_moncul(opt, str, i);

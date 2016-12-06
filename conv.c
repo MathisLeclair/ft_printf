@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   conv.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/04 15:49:52 by bfrochot          #+#    #+#             */
-/*   Updated: 2016/12/05 21:17:39 by mleclair         ###   ########.fr       */
+/*   Created: 2016/12/06 19:31:16 by bfrochot          #+#    #+#             */
+/*   Updated: 2016/12/06 19:32:37 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
 
 int		ft_count(int len)
 {

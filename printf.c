@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 16:43:58 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:23:01 by bfrochot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_findmod(int i, char *str, int k)
 		if (i > 2 && str[i - 3] == 'h')
 			k = -2;
 	}
-	else if(i > 1 && str[i - 2] == 'j')
+	else if (i > 1 && str[i - 2] == 'j')
 		k = 5;
 	else if (i > 1 && str[i - 2] == 'z')
 		k = 6;
@@ -94,7 +94,6 @@ int		ft_printf(const char *str, ...)
 	char	*str4;
 	char	*amod;
 	char	*machin;
-	int		temp;
 	int		i;
 
 	machin = NULL;
@@ -111,6 +110,5 @@ int		ft_printf(const char *str, ...)
 	}
 	if (i == -1)
 		return (-1);
-	temp = ft_print(0, 0, 1);
-	return (temp);
+	return (ft_print(0, 0, 1));
 }

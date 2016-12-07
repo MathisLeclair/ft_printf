@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 13:53:34 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 14:27:00 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/07 16:32:15 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int			ft_isokay(char c);
 int			conv(int nb, char *net);
 int			ft_printf(const char *str, ...);
 void		ft_apliopt(char *res, char *str);
+int			ft_prec(int i, int k, char c, char **str);
 int			ft_moncul(char *opt, char **str, int i);
 int			ft_opts(char *opt, char **str, int i);
 int			ft_print(char *str, int k, int u);

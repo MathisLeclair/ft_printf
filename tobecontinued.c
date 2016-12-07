@@ -3,24 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   tobecontinued.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 19:43:58 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/12/07 18:44:39 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		ft_number(int k, int i, int bool, char **str)
+int		ft_prec(int i, int k, char c, char **str)
 {
-	char	*tmp;
+	char neg;
+	char *tmp;
 
-	if (i == 0 && (*str)[0] == '0' && (*str)[1] == 0)
+	if (((*str)[0] == 0 && c == 'c'))
+		return (1);
+	if ((*str)[0] == '0' && (*str)[1] == 0 && k == 0 && c != 'c')
 	{
 		**str = 0;
 		return (0);
 	}
+	neg = ((*str)[0] == '-' ? 1 : 0);
+	if (i >= k + neg)
+		return (i);
+	else
+	{
+		tmp = malloc(k + neg + 1);
+		ft_memset(tmp, '0', k + neg - 1);
+		while(i >= neg)
+		{
+			tmp[k + neg] = (*str)[i];
+			--i;
+			--k;
+		}
+		if (neg == 1)
+			tmp[0] = '-';
+		free(*str);
+		*str = tmp;
+		return (ft_strlen(tmp));
+	}
+}
+
+int		ft_number(int k, int i, int bool, char **str)
+{
+	char	*tmp;
+
 	if (i < 0)
 		i *= -1;
 	if (k < i)
@@ -30,17 +58,16 @@ int		ft_number(int k, int i, int bool, char **str)
 	tmp = ft_memset(tmp, (bool == 1 ? '0' : ' '), i);
 	if ((*str)[1] == 'x' && (*str)[0] == '0' && bool == 1)
 	{
-		tmp[i - k + 2] = 0;
-		ft_strcat(tmp + i - k + 2, *str + 2);
+		ft_memlcat(tmp + i - k + 2, *str + 2, 0, k - 2);
 		tmp[1] = 'x';
 		free(*str);
 		*str = tmp;
 		return (i);
 	}
 	tmp[i - k] = '\0';
-	ft_strcat(tmp + i - k, *str);
+	ft_memlcat(tmp + i - k, *str, 0, k);
 	k = 0;
-	while (tmp[k])
+	while (k < i)
 	{
 		if (tmp[k] == '-' && k > 0 && tmp[k - 1] == '0')
 		{
@@ -61,6 +88,15 @@ int		ft_plus(int k, int i, int bool, char **str)
 	i = bool;
 	if ((*str)[0] == '0' && (*str)[1] != 0 && bool == 0)
 		(*str)[0] = '+';
+	if (k == 1 && *str[0] >= '0' & *str[0] <= '9')
+	{
+		*str = malloc(3);
+		i = (int)(*str)[0];
+		(*str)[0] = '+';
+		(*str)[1] = (char)i;
+		(*str)[2] = '\0';
+		return (2);
+	}
 	if ((*str)[0] == '0' && (*str)[1] == 0)
 		return (k);
 	if (ft_isdigit((*str)[0]))
@@ -135,10 +171,14 @@ int		ft_minus(int k, int i, int bool, char **str)
 	if ((*str)[0] == '-')
 		tmp[0] = '-';
 	tmp[((*str)[0] == '-' ? 1 : 0)] = 0;
-	tmp = ft_strcat(tmp, *str + i + ((*str)[i] == 'x' ? -1 : 0));
+	ft_strcat(tmp, *str + i + ((*str)[i] == 'x' ? -1 : 0));
 	free(*str);
 	*str = tmp;
-	while (i--)
-		(*str)[i + ft_strlen(tmp)] = ' ';
-	return (k);
+	bool = k;
+	while (i-- > ((*str)[1] == 'x' ? 0 : -1))
+	{
+		(*str)[k] = ' ';
+		--k;
+	}
+	return (bool);
 }

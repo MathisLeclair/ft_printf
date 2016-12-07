@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_opts.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 19:38:08 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/12/07 18:57:23 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 int		ft_opts2(char *tab, char *opt, char **str, int i)
 {
-	if (tab[5] != 0)
+	if (tab[5] != 0 && opt[ft_strlen(opt) - 1] != 'p')
 	{
 		if (opt[ft_strlen(opt) - 1] != 's' && opt[ft_strlen(opt) - 1] != 'S')
-			i = ft_number(i, ft_atoi_base_printf(opt + tab[5], 10, 0), 1, str);
+			i = ft_prec(i, ft_atoi_base_printf(opt + tab[5], 10, 0), opt[ft_strlen(opt) - 1], str);
 		else
 		{
-			if (ft_atoi_base_printf(opt + tab[5] + 1, 10, 0) < i)
-			{
-				(*str)[ft_atoi_base_printf(opt + tab[5], 10, 0)] = 0;
-				i = ft_strlen(*str);
-			}
+			if (ft_atoi_base_printf(opt + tab[5], 10, 0) < i)
+				i = ft_atoi_base_printf(opt + tab[5], 10, 0);
 		}
 	}
 	if (tab[4])
@@ -32,8 +29,8 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 			(tab[5] == 0 ? tab[3] : 0), str);
 	if (tab[2])
 		ft_minus(i, 0, tab[5] - 1, str);
-	if (tab[0] == 1 && opt[ft_strlen(opt) - 1] != 'c'
-		&& ((*str)[0] != '0' || (*str)[1] != 0))
+	if (tab[0] == 1 && opt[ft_strlen(opt) - 1] != 'c' && ((*str)[0] != '0'
+		|| (*str)[1] != 0) && (i != 0 || opt[ft_strlen(opt) - 1] != 'x'))
 	{
 		if (opt[ft_strlen(opt) - 1] == 'o' || opt[ft_strlen(opt) - 1] == 'O')
 			i = ft_hastag(0, i, 0, str);
@@ -72,7 +69,7 @@ int		ft_opts(char *opt, char **str, int i)
 		if (ft_isdigit(opt[k]))
 			if (opt[k] != '0' && (done = 1) && tab[5] == 0)
 				tab[4] = 1;
-		if (opt[k] == '.')
+		if (opt[k] == '.' && opt[len - 1] != 'c' && opt[len - 1] != 'C')
 			tab[5] = k + 1;
 		if (opt[k] == '0' && done == 0)
 			tab[3] = 1;

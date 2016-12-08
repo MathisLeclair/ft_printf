@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:36:08 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/07 14:34:48 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/08 17:53:48 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		ft_x(va_list ap, int i, char c, char **str)
 {
 	unsigned long long int d;
 
-	d = 0;
 	if (i == 1)
 		d = va_arg(ap, unsigned long);
 	else if (i == 2)
@@ -74,17 +73,17 @@ int		ft_d(va_list ap, int i, char c, char **str)
 
 int		ft_p(va_list ap, int i, char c, char **str)
 {
-	char	*tmp;
+	// char	*tmp;
 
 	i = ft_x(ap, 1, c, str);
-	tmp = malloc(ft_strlen(*str) + 5);
-	tmp[0] = '0';
-	tmp[1] = 'x';
-	tmp[2] = 0;
-	ft_strcat(tmp, *str);
-	free(*str);
-	*str = tmp;
-	return (i + 2);
+	// tmp = malloc(ft_strlen(*str) + 5);
+	// tmp[0] = '0';
+	// tmp[1] = 'x';
+	// tmp[2] = 0;
+	// ft_strcat(tmp, *str);
+	// free(*str);
+	// *str = tmp;
+	return (i);
 }
 
 int		ft_israndom(va_list ap, int i, char c, char **str)

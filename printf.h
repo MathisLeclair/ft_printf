@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 13:53:34 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/07 16:32:15 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/08 18:28:24 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef int (*t_opt)(int, int, int, char **);
 
 void		ft_error(void);
 t_fun		*ft_type(void);
+int			ft_fuckit(char c);
 t_opt		*ft_options(void);
 int			ft_isokay(char c);
 int			conv(int nb, char *net);

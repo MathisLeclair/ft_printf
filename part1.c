@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   part1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 19:19:51 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/12/08 15:24:40 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int		ft_o(va_list ap, int i, char c, char **str)
 		d = (unsigned char)va_arg(ap, int);
 	else if (i == 5)
 		d = va_arg(ap, uintmax_t);
+	else if (i == -1)
+		d = (unsigned short)va_arg(ap, int);
 	else if (i == 6)
 		d = va_arg(ap, size_t);
 	else

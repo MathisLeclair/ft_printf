@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/07 18:44:39 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/08 19:08:56 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int		ft_prec(int i, int k, char c, char **str)
 
 	if (((*str)[0] == 0 && c == 'c'))
 		return (1);
+	if ((*str)[2] == '0' && (*str)[3] == 0 && c == 'p' && k == 0)
+	{
+		(*str)[2] = 0;
+		return (2);
+	}
 	if ((*str)[0] == '0' && (*str)[1] == 0 && k == 0 && c != 'c')
 	{
 		**str = 0;
@@ -31,7 +36,7 @@ int		ft_prec(int i, int k, char c, char **str)
 	{
 		tmp = malloc(k + neg + 1);
 		ft_memset(tmp, '0', k + neg - 1);
-		while(i >= neg)
+		while (i >= neg)
 		{
 			tmp[k + neg] = (*str)[i];
 			--i;
@@ -69,10 +74,10 @@ int		ft_number(int k, int i, int bool, char **str)
 	k = 0;
 	while (k < i)
 	{
-		if (tmp[k] == '-' && k > 0 && tmp[k - 1] == '0')
+		if ((tmp[k] == '-' || tmp[k] == '+') && k > 0 && tmp[k - 1] == '0')
 		{
+			tmp[0] = tmp[k];
 			tmp[k] = '0';
-			tmp[0] = '-';
 		}
 		++k;
 	}
@@ -88,17 +93,16 @@ int		ft_plus(int k, int i, int bool, char **str)
 	i = bool;
 	if ((*str)[0] == '0' && (*str)[1] != 0 && bool == 0)
 		(*str)[0] = '+';
-	if (k == 1 && *str[0] >= '0' & *str[0] <= '9')
+	if (k == 1 && *str[0] >= '0' && *str[0] <= '9')
 	{
-		*str = malloc(3);
-		i = (int)(*str)[0];
-		(*str)[0] = '+';
-		(*str)[1] = (char)i;
-		(*str)[2] = '\0';
+		tmp = malloc(3);
+		tmp[0] = '+';
+		tmp[1] = *str[0];
+		tmp[2] = '\0';
+		free(*str);
+		*str = tmp;
 		return (2);
 	}
-	if ((*str)[0] == '0' && (*str)[1] == 0)
-		return (k);
 	if (ft_isdigit((*str)[0]))
 	{
 		(*str)[k] = '\0';

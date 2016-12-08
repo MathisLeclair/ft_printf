@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isokay.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 14:16:42 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 19:20:46 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/12/08 18:38:07 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ int		ft_isokay(char c)
 {
 	if (c == 'z' || c == 'h' || c == 'l' || c == '+' || c == '-' || c == '#'
 		|| c == ' ' || c == '*' || c == '.' || c == 'j' || ft_isdigit(c))
+		return (1);
+	return (0);
+}
+
+int		ft_fuckit(char c)
+{
+	if (c == 'o' || c == 'O' || c == 'x' || c == 'X' || c == 'p'
+		|| c == 'd' || c == 'D' || c == 'i' || c == 'c' || c == 'C')
 		return (1);
 	return (0);
 }

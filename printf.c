@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/06 19:23:01 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/12/08 19:22:57 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		transfo(char *str, va_list ap, int j, char **machin)
 		return (-1);
 	i = ft_opts(str, machin, i);
 	ft_print(*machin, i, 0);
+	free(*machin);
 	return (0);
 }
 
@@ -95,9 +96,11 @@ int		ft_printf(const char *str, ...)
 	char	*amod;
 	char	*machin;
 	int		i;
+	char	*str5;
 
 	machin = NULL;
 	str4 = ft_strdup(str);
+	str5 = str4;
 	va_start(ap, str);
 	while (str4[0])
 	{
@@ -106,8 +109,12 @@ int		ft_printf(const char *str, ...)
 			break ;
 		amod = ft_findpara(&str4);
 		if (*amod != 0)
+		{
 			i = transfo(amod, ap, 0, &machin);
+			free(amod);
+		}
 	}
+	free(str5);
 	if (i == -1)
 		return (-1);
 	return (ft_print(0, 0, 1));

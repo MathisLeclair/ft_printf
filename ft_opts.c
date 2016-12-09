@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/09 14:03:14 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/09 15:32:26 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,35 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 	return (i);
 }
 
+void	ft_opts4(int k, char *opt, char *tab, int done)
+{
+	int len;
+
+	len = ft_strlen(opt);
+	while (++k < len)
+	{
+		if (opt[k] == '#' || opt[k] == 'p')
+			tab[0] = 1;
+		if (opt[k] == '+' && opt[len - 1] != 'x' && opt[len - 1] != 'p' &&
+		opt[len - 1] != 'X')
+			tab[1] = 1;
+		if (opt[k] == '-')
+			tab[2] = 1;
+		if (ft_isdigit(opt[k]))
+			if (opt[k] != '0' && (done = 1) && tab[5] == 0)
+				tab[4] = 1;
+		if (opt[k] == '.' && opt[len - 1] != 'c' && opt[len - 1] != 'C' &&
+		opt[len - 1] != '%')
+			tab[5] = k + 1;
+		if (opt[k] == '0' && done == 0)
+			tab[3] = 1;
+		if (opt[k] == ' ')
+			tab[6] = 1;
+		if (tab[2] == 1)
+			tab[3] = 0;
+	}
+}
+
 int		ft_opts(char *opt, char **str, int i)
 {
 	char	done;
@@ -68,25 +97,6 @@ int		ft_opts(char *opt, char **str, int i)
 	len = ft_strlen(opt);
 	done = 0;
 	k = -1;
-	while (++k < len)
-	{
-		if (opt[k] == '#' || opt[k] == 'p')
-			tab[0] = 1;
-		if (opt[k] == '+' && opt[len - 1] != 'x' && opt[len - 1] != 'p' && opt[len - 1] != 'X')
-			tab[1] = 1;
-		if (opt[k] == '-')
-			tab[2] = 1;
-		if (ft_isdigit(opt[k]))
-			if (opt[k] != '0' && (done = 1) && tab[5] == 0)
-				tab[4] = 1;
-		if (opt[k] == '.' && opt[len - 1] != 'c' && opt[len - 1] != 'C' && opt[len - 1] != '%')
-			tab[5] = k + 1;
-		if (opt[k] == '0' && done == 0)
-			tab[3] = 1;
-		if (opt[k] == ' ')
-			tab[6] = 1;
-		if (tab[2] == 1)
-			tab[3] = 0;
-	}
+	ft_opts4(k, opt, tab, done);
 	return (ft_opts2(tab, opt, str, i));
 }

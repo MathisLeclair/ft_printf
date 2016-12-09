@@ -6,7 +6,7 @@
 #    By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 19:21:21 by mleclair          #+#    #+#              #
-#    Updated: 2016/12/09 13:41:53 by mleclair         ###   ########.fr        #
+#    Updated: 2016/12/09 16:13:15 by mleclair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ FILE =	$(PATH)ft_atoi \
 		ft_opts \
 		part1 \
 		part2 \
+		part3 \
 		printf \
 		tableaupointeursurfonction \
 		opts1 \

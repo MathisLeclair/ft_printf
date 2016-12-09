@@ -6,64 +6,11 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 11:52:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/08 15:24:40 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/09 16:12:57 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-
-int		ft_wstrlen(wchar_t *str)
-{
-	wchar_t *tmp;
-
-	tmp = str;
-	while (*tmp != 0)
-		tmp++;
-	return (tmp - str);
-}
-
-int		ft_s(va_list ap, int i, char c, char **str)
-{
-	wchar_t	*t;
-	char	*tmp;
-	int		u;
-	int		k;
-
-	if (c == 'S' || i == 1)
-	{
-		u = 0;
-		i = 0;
-		t = va_arg(ap, wchar_t *);
-		if (t == NULL)
-		{
-			*str = malloc(7);
-			**str = 0;
-			ft_strcat(*str, "(null)");
-			return (6);
-		}
-		*str = malloc((ft_wstrlen(t) + 1) * sizeof(wchar_t));
-		ft_bzero(*str, (ft_wstrlen(t) + 1));
-		while (t[i])
-		{
-			k = conv(t[i], *str + u);
-			u += k;
-			++i;
-		}
-		return (u);
-	}
-	tmp = va_arg(ap, char *);
-	if (tmp == NULL)
-		tmp = "(null)";
-	*str = malloc(ft_strlen(tmp) + 1);
-	i = 0;
-	while (tmp[i])
-	{
-		(*str)[i] = tmp[i];
-		++i;
-	}
-	(*str)[i] = '\0';
-	return (i);
-}
 
 int		ft_c(va_list ap, int i, char c, char **str)
 {

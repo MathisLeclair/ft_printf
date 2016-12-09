@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 19:31:16 by bfrochot          #+#    #+#             */
-/*   Updated: 2016/12/06 19:32:37 by bfrochot         ###   ########.fr       */
+/*   Updated: 2016/12/09 16:37:27 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int		conv(int nb, char *new)
 	}
 	else
 		return (-1);
+	free(nbr);
 	return (ft_count(len) + 1);
 }

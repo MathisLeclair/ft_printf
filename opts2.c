@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 13:31:47 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/09 14:03:32 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:22:52 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		ft_moncul2(char *tmp, size_t k, char **str, int i)
 {
 	tmp[0] = ' ';
 	k = -1;
-	while (str[k++])
+	while (str[++k])
 		tmp[k + 1] = (*str)[k];
 	tmp[k + 1] = 0;
 	free(*str);
@@ -82,9 +82,7 @@ int		ft_moncul(char *opt, char **str, int i)
 				return (i);
 			}
 			else
-			{
 				return (ft_moncul2(tmp, k, str, i));
-			}
 		}
 	}
 	return (i);

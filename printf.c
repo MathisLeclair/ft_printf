@@ -6,13 +6,13 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:15:45 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/09 15:25:10 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:22:37 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		ft_findmod(int i, char *str, int k)
+int			ft_findmod(int i, char *str, int k)
 {
 	if (i > 1 && str[i - 2] == 'l')
 	{
@@ -33,7 +33,7 @@ int		ft_findmod(int i, char *str, int k)
 	return (k);
 }
 
-int		transfo(char *str, va_list ap, int j, char **machin)
+int			transfo(char *str, va_list ap, int j, char **machin)
 {
 	int		i;
 	int		k;
@@ -54,7 +54,7 @@ int		transfo(char *str, va_list ap, int j, char **machin)
 	return (0);
 }
 
-char	*ft_findpara(char **str)
+char		*ft_findpara(const char **str)
 {
 	char	*res;
 	int		j;
@@ -70,7 +70,7 @@ char	*ft_findpara(char **str)
 	i = 0;
 	while (i < j)
 	{
-		res[i] = *(*str);
+		res[i] = **str;
 		++i;
 		++(*str);
 	}
@@ -78,43 +78,38 @@ char	*ft_findpara(char **str)
 	return (res);
 }
 
-char	*troncage(char *str)
+const char	*troncage(const char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i] && str[i] != '%')
 		i++;
-	ft_print(str, i, 0);
+	ft_print((char *)str, i, 0);
 	return (str + i);
 }
 
-int		ft_printf(const char *str, ...)
+int			ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	char	*str4;
 	char	*amod;
 	char	*machin;
 	int		i;
-	char	*str5;
 
 	machin = NULL;
-	str4 = ft_strdup(str);
-	str5 = str4;
 	va_start(ap, str);
-	while (str4[0])
+	while (str[0])
 	{
-		str4 = troncage(str4);
-		if (str4[0] == 0)
+		str = troncage(str);
+		if (str[0] == 0)
 			break ;
-		amod = ft_findpara(&str4);
+		amod = ft_findpara(&str);
 		if (*amod != 0)
 		{
 			i = transfo(amod, ap, 0, &machin);
 			free(amod);
 		}
 	}
-	free(str5);
 	if (i == -1)
 		return (-1);
 	return (ft_print(0, 0, 1));

@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:32:47 by mleclair          #+#    #+#             */
-/*   Updated: 2016/11/27 14:23:14 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:50:05 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,4 @@ t_fun	*ft_type(void)
 		fcts[8] = ft_israndom;
 	}
 	return (fcts);
-}
-
-t_opt	*ft_options(void)
-{
-	static t_opt *penis = NULL;
-
-	if (penis == NULL)
-	{
-		penis = malloc(sizeof(t_fun *) * 6);
-		penis[0] = ft_hastag;
-		penis[1] = ft_number;
-		penis[2] = ft_minus;
-		penis[3] = ft_plus;
-	}
-	return (penis);
 }

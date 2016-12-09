@@ -6,13 +6,13 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 11:31:41 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/09 15:32:26 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:19:20 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		ft_opts3(char *tab, char *opt, char **str, int i)
+int		ft_optsret2(char *tab, char *opt, char **str, int i)
 {
 	if (tab[0] == 1 && opt[ft_strlen(opt) - 1] != 'c' && ((*str)[0] != '0'
 		|| (*str)[1] != 0 || (opt[ft_strlen(opt) - 1] != 'x'
@@ -29,7 +29,7 @@ int		ft_opts3(char *tab, char *opt, char **str, int i)
 	return (i);
 }
 
-int		ft_opts2(char *tab, char *opt, char **str, int i)
+int		ft_optsret(char *tab, char *opt, char **str, int i)
 {
 	if (tab[5] != 0)
 	{
@@ -45,7 +45,7 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 	if (tab[1] == 1 && opt[ft_strlen(opt) - 1] != 'u'
 		&& opt[ft_strlen(opt) - 1] != 'o' && opt[ft_strlen(opt) - 1] != 'O')
 		i = ft_plus(i, 0, tab[5], str);
-	i = ft_opts3(tab, opt, str, i);
+	i = ft_optsret2(tab, opt, str, i);
 	if (tab[4])
 		i = ft_number(i, ft_atoi_base_printf(opt, 10, 0), ((tab[5] == 0 ||
 		!ft_fuckit(opt[ft_strlen(opt) - 1])) ? tab[3] : 0), str);
@@ -57,7 +57,7 @@ int		ft_opts2(char *tab, char *opt, char **str, int i)
 	return (i);
 }
 
-void	ft_opts4(int k, char *opt, char *tab, int done)
+void	ft_opts2(int k, char *opt, char *tab, int done)
 {
 	int len;
 
@@ -97,6 +97,6 @@ int		ft_opts(char *opt, char **str, int i)
 	len = ft_strlen(opt);
 	done = 0;
 	k = -1;
-	ft_opts4(k, opt, tab, done);
-	return (ft_opts2(tab, opt, str, i));
+	ft_opts2(k, opt, tab, done);
+	return (ft_optsret(tab, opt, str, i));
 }

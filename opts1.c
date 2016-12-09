@@ -6,17 +6,14 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/09 14:03:54 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/09 18:29:43 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		ft_prec(int i, int k, char c, char **str)
+int		ft_precspe(char **str, char c, int k)
 {
-	char neg;
-	char *tmp;
-
 	if (((*str)[0] == 0 && c == 'c'))
 		return (1);
 	if ((*str)[2] == '0' && (*str)[3] == 0 && c == 'p' && k == 0)
@@ -29,6 +26,17 @@ int		ft_prec(int i, int k, char c, char **str)
 		**str = 0;
 		return (0);
 	}
+	return (-1);
+}
+
+int		ft_prec(int i, int k, char c, char **str)
+{
+	char	neg;
+	char	*tmp;
+	int		j;
+
+	if ((j = ft_precspe(str, c, k)) > -1)
+		return (j);
 	neg = ((*str)[0] == '-' ? 1 : 0);
 	if (i >= k + neg)
 		return (i);

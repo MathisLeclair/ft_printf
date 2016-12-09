@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfrochot <bfrochot@student.42.fr>          +#+  +:+       +#+         #
+#    By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 19:21:21 by mleclair          #+#    #+#              #
-#    Updated: 2016/12/06 19:32:46 by bfrochot         ###   ########.fr        #
+#    Updated: 2016/12/09 13:41:53 by mleclair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ FILE =	$(PATH)ft_atoi \
 		part2 \
 		printf \
 		tableaupointeursurfonction \
-		tobecontinued
+		opts1 \
+		opts2
 
 OBJ  := $(addsuffix .o, $(FILE))
 

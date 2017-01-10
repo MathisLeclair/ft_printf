@@ -6,7 +6,7 @@
 /*   By: mleclair <mleclair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 17:16:29 by mleclair          #+#    #+#             */
-/*   Updated: 2016/12/11 15:50:44 by mleclair         ###   ########.fr       */
+/*   Updated: 2016/12/15 14:47:35 by mleclair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int		ft_minus(int k, int i, int bool, char **str)
 	free(*str);
 	*str = tmp;
 	bool = k;
-	while (i-- > -1)
+	while (i-- > ((*str)[1] == 'x' ? 0 : -1))
 		(*str)[k--] = ' ';
 	return (bool);
 }
